@@ -1,0 +1,80 @@
+scalar DateTime
+
+type Query {
+  # Fetches a specific Video information by ID
+  getVideo(_id: String!): VideoType
+
+  # Fetches Video Information by any property
+  getVideosBy(input: VideoInput!): [VideoType]
+
+  # Fetches all Videos
+  listVideos: [VideoType]
+}
+
+type Mutation {
+  # Adds new Video in the library
+  addVideo(input: VideoInput!): VideoType
+
+  # Update existing Video information
+  updateVideo(input: VideoInput!): VideoType
+
+  # Increments the view count of a Video
+  incrementViewCount(_id: ID!): Int
+
+  # Removes a Video by ID
+  removeVideo(_id: String!): VideoType
+
+  # Import From Mailing List
+  importVideosFromMailman(input: ProfileInput): String
+}
+
+type VideoType {
+  _id: ID
+  title: String
+  description: String
+  views: Int
+  videoURL: String
+  fileID: String
+  source: String
+  length: Int
+  approxLength: String
+  categories: [String]
+  mailingLists: [String]
+  tags: [String]
+  owner: ProfileType
+  createdAt: DateTime
+  createdBy: ProfileType
+  modifiedAt: DateTime
+  modifiedBy: ProfileType
+}
+
+input VideoInput {
+  _id: ID
+  title: String
+  description: String
+  views: Int
+  videoURL: String
+  fileID: String
+  source: String
+  length: Int
+  approxLength: String
+  categories: [String]
+  mailingLists: [String]
+  tags: [String]
+  owner: ProfileInput
+  createdAt: DateTime
+  createdBy: ProfileInput
+  modifiedAt: DateTime
+  modifiedBy: ProfileInput
+  skipEmail: Boolean
+}
+
+type ProfileType {
+  UID: String
+  name: String
+}
+
+input ProfileInput {
+  UID: String
+  name: String
+}
