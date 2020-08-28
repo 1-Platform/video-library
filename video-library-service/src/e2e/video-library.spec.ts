@@ -148,7 +148,7 @@ describe('VideoLibrary microservice API Test', () => {
       .send({
         query: query,
         operationName: 'getVideosBy',
-        variables: { input: {title: "DSAL Reservation Tool - Tutorial" }}
+        variables: { input: {title: "Title of the video" }}
       })
       .expect(res => {
         expect(res.body).not.toHaveProperty('errors');

@@ -12,8 +12,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "github:1-Platform/one-platform",
-    "directory": "packages/video-library-service"
+    "url": "github:1-Platform/video-library",
+    "directory": "video-library/video-library-service"
   },
   "publishConfig": {
     "access": "private"
@@ -92,7 +92,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "bugs": {
-    "url": "https://github.com/1-Platform/one-platform/issues?q=is%3Aissue+is%3Aopen+video-library-service"
+    "url": "https://github.com/1-Platform/video-library/issues"
   },
   "generator-op-microservice-version": "0.0.0"
 }
