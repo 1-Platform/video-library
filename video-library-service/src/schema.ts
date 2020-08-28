@@ -14,12 +14,12 @@ export const VideoSchema: Schema = new Schema({
   mailingLists: [String],
   tags: [String],
   owner: {
-    UID: String,
+    uid: String,
     name: String
   },
   createdAt: { type: Date, default: Date.now },
   createdBy: {
-    UID: String,
+    uid: String,
     name: String,
     email: String,
     location: String,
@@ -28,7 +28,7 @@ export const VideoSchema: Schema = new Schema({
   },
   modifiedAt: Date,
   modifiedBy: {
-    UID: String,
+    uid: String,
     name: String,
     email: String,
     location: String,

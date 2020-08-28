@@ -4,6 +4,7 @@ node_modules
 
 # ignore dist
 dist
+coverage
 
 # Logs
 npm-debug.log*

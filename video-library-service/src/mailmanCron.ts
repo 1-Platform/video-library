@@ -74,19 +74,15 @@ export class MailmanCron {
                         "title": mail.subject,
                         "description": mail.text,
                         "owner": {
-                          "kerberosID": mail.from.value[0].address.substring(0, mail.from.value[0].address.indexOf("@")),
-                          "name": mail.from.value[0].name,
-                          "email": mail.from.value[0].address,
+                          "uid": mail.from.value[0].address.substring(0, mail.from.value[0].address.indexOf("@")),
+                          "name": mail.from.value[0].name
                         },
                         "tags": [ "mailman-import" ],
                         "mailingLists": [`${process.env.EMAIL}`],
-                        "timestamp": {
-                          "createdAt": mail.date,
-                          "createdBy": {
-                            "kerberosID": mail.from.value[0].address.substring(0, mail.from.value[0].address.indexOf("@")),
-                            "name": mail.from.value[0].name,
-                            "email": mail.from.value[0].address,
-                          },
+                        "createdAt": mail.date,
+                        "createdBy": {
+                          "uid": mail.from.value[0].address.substring(0, mail.from.value[0].address.indexOf("@")),
+                          "name": mail.from.value[0].name
                         },
                         "fileID": Math.random().toString(36).slice(2),
                       });

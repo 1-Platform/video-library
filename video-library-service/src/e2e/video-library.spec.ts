@@ -10,31 +10,69 @@ import supertest from 'supertest';
 
 let request: supertest.SuperTest<supertest.Test>;
 const query = `
-  query List {
-    list {
-      message
+  fragment VideoFragment on VideoType {
+    _id
+    title
+    description
+    views
+    videoURL
+    fileID
+    source
+    length
+    approxLength
+    categories
+    mailingLists
+    tags
+    owner{
+      uid
+      name
+    }
+    createdAt
+    createdBy{
+      uid
+      name
+    }
+    modifiedAt
+    modifiedBy{
+      uid
+      name
     }
   }
-  query Get($id: String!) {
-    get(id: $id) {
-      message
+
+  query listVideos {
+    listVideos {
+      ...VideoFragment
     }
   }
-  mutation Create($input: VideoLibraryInput) {
-    create(input: $input) {
-      message
+  query getVideo($id: String!) {
+    getVideo(_id: $id) {
+      ...VideoFragment
     }
   }
-  mutation Update($input: VideoLibraryInput) {
-    update(input: $input) {
-      message
+  query getVideosBy($input: VideoInput!) {
+    getVideosBy(input: $input) {
+      ...VideoFragment
     }
   }
-  mutation Delete($id: String!) {
-    delete(id: $id) {
-      message
+  mutation addVideo($input: VideoInput!) {
+    addVideo(input: $input) {
+      ...VideoFragment
     }
   }
+  mutation updateVideo($input: VideoInput!) {
+    updateVideo(input: $input) {
+      ...VideoFragment
+    }
+  }
+  mutation removeVideo($id: String!) {
+    removeVideo(_id: $id) {
+      ...VideoFragment
+    }
+  }
+  mutation incrementViewCount($id: ID!) {
+    incrementViewCount(_id: $id)
+  }
+
 `;
 
 beforeAll(() => {
@@ -45,50 +83,12 @@ afterAll(done => {
 });
 
 describe('VideoLibrary microservice API Test', () => {
-  it('List should return all documents', done => {
+  it('AddVideo should create a video', done => {
     request
       .post('/graphql')
       .send({
         query: query,
-        operationName: 'List'
-      })
-      .expect(res => {
-        expect(res.body).not.toHaveProperty('errors');
-        expect(res.body).toHaveProperty('data');
-
-        expect(res.body.data.list[0].message).toEqual('GET API for VideoLibrary microservice');
-      })
-      .end((err, res) => {
-        done(err);
-      });
-  });
-
-  it('Get should return a single matched document', done => {
-    request
-      .post('/graphql')
-      .send({
-        query: query,
-        operationName: 'Get',
-        variables: { id: 'mock_id' }
-
-      })
-      .expect(res => {
-        expect(res.body).not.toHaveProperty('errors');
-        expect(res.body).toHaveProperty('data');
-
-        expect(res.body.data.get.message).toEqual('GET by ID API for VideoLibrary microservice');
-      })
-      .end((err, res) => {
-        done(err);
-      });
-  });
-
-  it('Create should create a document', done => {
-    request
-      .post('/graphql')
-      .send({
-        query: query,
-        operationName: 'Create',
+        operationName: 'addVideo',
         variables: {
           input: mock
         }
@@ -97,20 +97,76 @@ describe('VideoLibrary microservice API Test', () => {
         expect(res.body).not.toHaveProperty('errors');
         expect(res.body).toHaveProperty('data');
 
-        expect(res.body.data).toHaveProperty('create');
-        expect(res.body.data.create).toMatchObject({'message': 'POST API for VideoLibrary microservice'});
+        expect(res.body.data).toHaveProperty('addVideo');
+        expect(res.body.data.addVideo).toMatchObject(mock);
       })
       .end((err, res) => {
         done(err);
       });
   });
 
-  it('Update should update a document', done => {
+  it('ListVideos should return all videos', done => {
     request
       .post('/graphql')
       .send({
         query: query,
-        operationName: 'Update',
+        operationName: 'listVideos'
+      })
+      .expect(res => {
+        expect(res.body).not.toHaveProperty('errors');
+        expect(res.body).toHaveProperty('data');
+        
+        expect(res.body.data.listVideos[0]).toMatchObject(mock);
+      })
+      .end((err, res) => {
+        done(err);
+      });
+  });
+
+  it('GetVideo should return a single matched video', done => {
+    request
+      .post('/graphql')
+      .send({
+        query: query,
+        operationName: 'getVideo',
+        variables: { id: "5d2f8df499410e01d3da3d62" }
+      })
+      .expect(res => {
+        expect(res.body).not.toHaveProperty('errors');
+        expect(res.body).toHaveProperty('data');
+
+        expect(res.body.data.getVideo).toMatchObject(mock);
+      })
+      .end((err, res) => {
+        done(err);
+      });
+  });
+
+  it('GetVideosBy should return a list of matched video', done => {
+    request
+      .post('/graphql')
+      .send({
+        query: query,
+        operationName: 'getVideosBy',
+        variables: { input: {title: "DSAL Reservation Tool - Tutorial" }}
+      })
+      .expect(res => {
+        expect(res.body).not.toHaveProperty('errors');
+        expect(res.body).toHaveProperty('data');
+
+        expect(res.body.data.getVideosBy[0]).toMatchObject(mock);
+      })
+      .end((err, res) => {
+        done(err);
+      });
+  });
+
+  it('UpdateVideo should update a video', done => {
+    request
+      .post('/graphql')
+      .send({
+        query: query,
+        operationName: 'updateVideo',
         variables: {
           input: mock
         }
@@ -119,31 +175,68 @@ describe('VideoLibrary microservice API Test', () => {
         expect(res.body).not.toHaveProperty('errors');
         expect(res.body).toHaveProperty('data');
 
-        expect(res.body.data).toHaveProperty('update');
-        expect(res.body.data.update).toMatchObject({message: 'PUT API for VideoLibrary microservice'});
+        expect(res.body.data).toHaveProperty('updateVideo');
+        expect(res.body.data.updateVideo).toMatchObject(mock);
       })
       .end((err, res) => {
         done(err);
       });
   });
 
-  it('Delete should delete a document', done => {
+  
+  it('IncrementView should increment views of a video', done => {
     request
       .post('/graphql')
       .send({
         query: query,
-        operationName: 'Delete',
-        variables: { id: 'mock_id' }
+        operationName: 'incrementViewCount',
+        variables: { id: "5d2f8df499410e01d3da3d62" }
       })
       .expect(res => {
         expect(res.body).not.toHaveProperty('errors');
         expect(res.body).toHaveProperty('data');
 
-        expect(res.body.data).toHaveProperty('delete');
-        expect(res.body.data.delete).toMatchObject({message: 'DELETE API for VideoLibrary microservice'});
+        expect(res.body.data).toHaveProperty('incrementViewCount');
       })
       .end((err, res) => {
         done(err);
       });
   });
+
+
+  it('Delete should delete a video', done => {
+    request
+      .post('/graphql')
+      .send({
+        query: query,
+        operationName: 'removeVideo',
+        variables: { id: "5d2f8df499410e01d3da3d62" }
+      })
+      .expect(res => {
+        expect(res.body).not.toHaveProperty('errors');
+        expect(res.body).toHaveProperty('data');
+
+        expect(res.body.data).toHaveProperty('removeVideo');
+        expect( res.body.data.removeVideo ).toHaveProperty( '_id' );
+        expect( res.body.data.removeVideo ).toHaveProperty( 'title' );
+        expect( res.body.data.removeVideo ).toHaveProperty( 'description' );
+        expect( res.body.data.removeVideo ).toHaveProperty( 'videoURL' );
+        expect( res.body.data.removeVideo ).toHaveProperty( 'fileID' );
+        expect( res.body.data.removeVideo ).toHaveProperty( 'source' );
+        expect( res.body.data.removeVideo ).toHaveProperty( 'length' );
+        expect( res.body.data.removeVideo ).toHaveProperty( 'approxLength' );
+        expect( res.body.data.removeVideo ).toHaveProperty( 'categories' );
+        expect( res.body.data.removeVideo ).toHaveProperty( 'mailingLists' );
+        expect( res.body.data.removeVideo ).toHaveProperty( 'tags' );
+        expect( res.body.data.removeVideo ).toHaveProperty( 'owner' );
+        expect( res.body.data.removeVideo ).toHaveProperty( 'createdAt' );
+        expect( res.body.data.removeVideo ).toHaveProperty( 'createdBy' );
+        expect( res.body.data.removeVideo ).toHaveProperty( 'modifiedAt' );
+        expect( res.body.data.removeVideo ).toHaveProperty( 'modifiedBy' );
+      })
+      .end((err, res) => {
+        done(err);
+      });
+  });
+
 });

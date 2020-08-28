@@ -70,11 +70,11 @@ input VideoInput {
 }
 
 type ProfileType {
-  UID: String
+  uid: String
   name: String
 }
 
 input ProfileInput {
-  UID: String
+  uid: String
   name: String
 }

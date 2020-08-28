@@ -93,7 +93,7 @@ Sent from One Portal: ${process.env.CLIENT}`,
         });
     },
     removeVideo(root: any, { _id }: any, ctx: any) {
-      return VideoLibrary.findByIdAndRemove(_id);
+      return VideoLibrary.findByIdAndRemove(_id).then(res => res);
     },
     /**
      * Initiates the import script for mailman

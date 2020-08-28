@@ -1,4 +1,19 @@
 {
-   "message": "Define your test mocks in this file and remove this key value pair if not required"
+   "_id":"5d2f8df499410e01d3da3d62",
+   "title":"DSAL Reservation Tool - Tutorial",
+   "description":"This is DSAL's reservation tool video tutorial. Showing all tool's features and how to create a DSAL loan.",
+   "views": 3,
+   "videoURL":"https://mojo.redhat.com/videos/939306",
+   "fileID":"5d2f8df499410e01d3da3d62",
+   "source":"mojo",
+   "length": 5,
+   "approxLength":"\u003c 5 min",
+   "categories":[],
+   "mailingLists":[],
+   "tags":["dsal","one-portal"],
+   "owner":{"uid":"tapazogl","name":"Theodoros Apazoglou"},
+   "createdAt":"2019-07-17T21:06:59.000Z",
+   "createdBy":{"uid":"tapazogl","name":"Theodoros Apazoglou"},
+   "modifiedAt": "2019-08-22T11:43:50.000Z",
+   "modifiedBy":{"uid":"mdeshmuk","name":"Mayur Deshmukh"}
 }
-

@@ -23,7 +23,7 @@ type Video = {
 }
 
 type IUser = {
-    UID: string;
+    uid: string;
     name?: string;
     email?: string;
     location?: string;
@@ -32,6 +32,6 @@ type IUser = {
   }
 
   type IUserProfile = {
-    UID: string;
+    uid: string;
     name: string;
   }
