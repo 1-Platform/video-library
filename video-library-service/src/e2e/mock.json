@@ -11,9 +11,8 @@
    "categories":[],
    "mailingLists":[],
    "tags":["test","tag"],
-   "owner":{"uid":"gl","name":"Ghanshyam lohar"},
-   "createdAt":"2019-07-17T21:06:59.000Z",
-   "createdBy":{"uid":"gl","name":"Ghanshyam lohar"},
-   "modifiedAt": "2019-08-22T11:43:50.000Z",
-   "modifiedBy":{"uid":"gl","name":"Ghanshyam lohar"}
+   "createdBy": "Ghanshyam lohar",
+   "createdOn": "2019-08-22T11:43:50.000Z",
+   "updatedBy": "Ghanshyam lohar",
+   "updatedOn": "2019-08-22T11:43:50.000Z"
 }

@@ -8,12 +8,9 @@ import { VideoLibrary } from "./schema";
  * @class MailmanCron
  */
 export class MailmanCron {
-  io: any;
   /**
    * Initializing Constructor to initialize the cron
   */
-  constructor() {
-  }
   public getEmailArchives() {
     const downloadAndProcessArchive =  (url: any, fileName: any, callback: any) => {
       request.head(url, (err: any, response: any, body: any) =>  {
@@ -73,17 +70,10 @@ export class MailmanCron {
                       const videoData = new VideoLibrary({
                         "title": mail.subject,
                         "description": mail.text,
-                        "owner": {
-                          "uid": mail.from.value[0].address.substring(0, mail.from.value[0].address.indexOf("@")),
-                          "name": mail.from.value[0].name
-                        },
                         "tags": [ "mailman-import" ],
                         "mailingLists": [`${process.env.EMAIL}`],
-                        "createdAt": mail.date,
-                        "createdBy": {
-                          "uid": mail.from.value[0].address.substring(0, mail.from.value[0].address.indexOf("@")),
-                          "name": mail.from.value[0].name
-                        },
+                        "createdOn": mail.date,
+                        "createdBy": mail.from.value[0].name,
                         "fileID": Math.random().toString(36).slice(2),
                       });
                       videoData.save();

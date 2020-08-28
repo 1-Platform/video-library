@@ -23,20 +23,10 @@ const query = `
     categories
     mailingLists
     tags
-    owner{
-      uid
-      name
-    }
-    createdAt
-    createdBy{
-      uid
-      name
-    }
-    modifiedAt
-    modifiedBy{
-      uid
-      name
-    }
+    createdOn
+    createdBy
+    updatedOn
+    updatedBy
   }
 
   query listVideos {
@@ -142,7 +132,7 @@ describe('VideoLibrary microservice API Test', () => {
       });
   });
 
-  it('GetVideosBy should return a list of matched video', done => {
+  it('GetVideosBy should return a list of matched videos', done => {
     request
       .post('/graphql')
       .send({
@@ -204,7 +194,7 @@ describe('VideoLibrary microservice API Test', () => {
   });
 
 
-  it('Delete should delete a video', done => {
+  it('RemoveVideo should delete a video', done => {
     request
       .post('/graphql')
       .send({
@@ -228,15 +218,13 @@ describe('VideoLibrary microservice API Test', () => {
         expect( res.body.data.removeVideo ).toHaveProperty( 'categories' );
         expect( res.body.data.removeVideo ).toHaveProperty( 'mailingLists' );
         expect( res.body.data.removeVideo ).toHaveProperty( 'tags' );
-        expect( res.body.data.removeVideo ).toHaveProperty( 'owner' );
-        expect( res.body.data.removeVideo ).toHaveProperty( 'createdAt' );
+        expect( res.body.data.removeVideo ).toHaveProperty( 'createdOn' );
         expect( res.body.data.removeVideo ).toHaveProperty( 'createdBy' );
-        expect( res.body.data.removeVideo ).toHaveProperty( 'modifiedAt' );
-        expect( res.body.data.removeVideo ).toHaveProperty( 'modifiedBy' );
+        expect( res.body.data.removeVideo ).toHaveProperty( 'updatedOn' );
+        expect( res.body.data.removeVideo ).toHaveProperty( 'updatedBy' );
       })
       .end((err, res) => {
         done(err);
       });
   });
-
 });

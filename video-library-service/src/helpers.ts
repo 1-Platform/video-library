@@ -77,7 +77,5 @@ class VideoLibraryHelpers {
       return "> 5 min";
     }
   }
-  
-  export const VideoLibraryHelper = VideoLibraryHelpers.getInstance();
-  export default VideoLibraryHelper;
-  
+export default VideoLibraryHelpers.getInstance();
+

@@ -25,7 +25,7 @@ type Mutation {
   removeVideo(_id: String!): VideoType
 
   # Import From Mailing List
-  importVideosFromMailman(input: ProfileInput): String
+  importVideosFromMailman: String
 }
 
 type VideoType {
@@ -41,11 +41,10 @@ type VideoType {
   categories: [String]
   mailingLists: [String]
   tags: [String]
-  owner: ProfileType
-  createdAt: DateTime
-  createdBy: ProfileType
-  modifiedAt: DateTime
-  modifiedBy: ProfileType
+  createdBy: String
+  createdOn: DateTime
+  updatedBy: String
+  updatedOn: DateTime
 }
 
 input VideoInput {
@@ -61,20 +60,9 @@ input VideoInput {
   categories: [String]
   mailingLists: [String]
   tags: [String]
-  owner: ProfileInput
-  createdAt: DateTime
-  createdBy: ProfileInput
-  modifiedAt: DateTime
-  modifiedBy: ProfileInput
+  createdBy: String
+  createdOn: DateTime
+  updatedBy: String
+  updatedOn: DateTime
   skipEmail: Boolean
-}
-
-type ProfileType {
-  uid: String
-  name: String
-}
-
-input ProfileInput {
-  uid: String
-  name: String
 }

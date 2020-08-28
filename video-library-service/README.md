@@ -8,10 +8,11 @@ Switch to the working directory
 
  `cd video-library-service`.
 
-Copy Certificates
+Install depndencies
 ------------
+Install project dependencies using
 
-  1. Copy the SSL paths to the `.env` file of `video-library` microservice.
+ `npm install`
 
 Start Microservice
 ------------

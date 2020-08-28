@@ -13,28 +13,10 @@ export const VideoSchema: Schema = new Schema({
   categories: [String],
   mailingLists: [String],
   tags: [String],
-  owner: {
-    uid: String,
-    name: String
-  },
-  createdAt: { type: Date, default: Date.now },
-  createdBy: {
-    uid: String,
-    name: String,
-    email: String,
-    location: String,
-    title: String,
-    isActive: Boolean
-  },
-  modifiedAt: Date,
-  modifiedBy: {
-    uid: String,
-    name: String,
-    email: String,
-    location: String,
-    title: String,
-    isActive: Boolean
-  }
+  createdBy: String,
+  createdOn: Date,
+  updatedBy: String,
+  updatedOn: Date
 }, { collection: "video-library" });
 
 VideoSchema.post("save", (doc: VideoModel) => {

@@ -46,7 +46,7 @@ export const VideoLibraryResolver = {
           if (input.skipEmail !== true) {
             const cc = video.mailingLists.filter((email: any) => !!email && email !== `${process.env.EMAIL}`);
             transporter.sendMail({
-              from: `${video.createdBy.name} <${process.env.NOREPLY_EMAIL}>`,
+              from: `${video.createdBy} <${process.env.NOREPLY_EMAIL}>`,
               to: `${process.env.TO_EMAIL}`,
               cc: cc.join(", "),
               messageId: `${video._id}`,
@@ -54,12 +54,12 @@ export const VideoLibraryResolver = {
               text: `
 Hello,
 
-${video.owner.name} has recently added a video to the One Portal Video Library.
+${video.createdBy} has recently added a video to the One Portal Video Library.
 
 Video Title: ${video.title}
 
 Video Description:
-\t${video.description || `A Demo was recently created for ${video.title} by ${video.owner.name}.`}
+\t${video.description || `A Demo was recently created for ${video.title} by ${video.createdBy}.`}
 
 Video Length: ${VideoLibraryHelper.humanizeTime(video.length, { fallbackString: video.approxLength })}
 To watch this video on One Portal, follow this link: ${process.env.CLIENT}/video-library?videoID=${video.fileID || video._id}

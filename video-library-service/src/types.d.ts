@@ -15,23 +15,8 @@ type Video = {
   categories: string[];
   mailingLists: string[];
   tags: string[];
-  owner: IUserProfile;
-  createdAt: Date;
-  createdBy: IUser;
-  modifiedAt?: string;
-  modifiedBy?: IUser;
+  createdBy: string;
+  createdOn: Date;
+  updatedBy: string;
+  updatedOn: Date;
 }
-
-type IUser = {
-    uid: string;
-    name?: string;
-    email?: string;
-    location?: string;
-    title?: string;
-    isActive?: Boolean;
-  }
-
-  type IUserProfile = {
-    uid: string;
-    name: string;
-  }
