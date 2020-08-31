@@ -1,0 +1,18 @@
+{
+   "_id":"5d2f8df499410e01d3da3d62",
+   "title":"Title of the video",
+   "description":"Description of the video",
+   "views": 1,
+   "videoURL":"",
+   "fileID":"5d2f8df499410e01d3da3d62",
+   "source":"source",
+   "length": 5,
+   "approxLength":"\u003c 5 min",
+   "categories":[],
+   "mailingLists":[],
+   "tags":["test","tag"],
+   "createdBy": "glohar",
+   "createdOn": "2019-08-22T11:43:50.000Z",
+   "updatedBy": "glohar",
+   "updatedOn": "2019-08-22T12:43:50.000Z"
+}

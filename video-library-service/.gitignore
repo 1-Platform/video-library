@@ -1,0 +1,10 @@
+# Development files
+node_modules
+*.env
+
+# ignore dist
+dist
+coverage
+
+# Logs
+npm-debug.log*
