@@ -71,7 +71,7 @@ export class MailmanCron {
                         "title": mail.subject,
                         "description": mail.text,
                         "tags": [ "mailman-import" ],
-                        "mailingLists": [`${process.env.EMAIL}`],
+                        "mailingLists": [process.env.EMAIL],
                         "createdOn": mail.date,
                         "createdBy": mail.from.value[0].name,
                         "fileID": Math.random().toString(36).slice(2),

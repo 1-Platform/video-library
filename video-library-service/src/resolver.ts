@@ -44,15 +44,14 @@ export const VideoLibraryResolver = {
         })
         .then(video => {
           if (input.skipEmail !== true) {
-            const cc = video.mailingLists.filter((email: any) => !!email && email !== `${process.env.EMAIL}`);
+            const cc = video.mailingLists.filter((email: any) => !!email && email !== process.env.EMAIL);
             transporter.sendMail({
               from: `${video.createdBy} <${process.env.NOREPLY_EMAIL}>`,
-              to: `${process.env.TO_EMAIL}`,
+              to: process.env.TO_EMAIL,
               cc: cc.join(", "),
               messageId: `${video._id}`,
               subject: `[Demo] ${video.title} (${VideoLibraryHelper.humanizeTime(video.length, { fallbackString: video.approxLength })})`,
-              text: `
-Hello,
+              text: `Hello,
 
 ${video.createdBy} has recently added a video to the One Portal Video Library.
 

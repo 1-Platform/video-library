@@ -5,10 +5,11 @@
     "className": "VideoLibrary",
     "serviceName": "video-library"
   },
-  "version": "",
+  "version": "0.0.1",
   "keywords": [
-    "web-components",
-    "html"
+    "microservice",
+    "graphql",
+    "video-library"
   ],
   "repository": {
     "type": "git",
