@@ -1,0 +1,308 @@
+:root {
+  --pf-global--FontFamily--sans-serif: "Red Hat Text", sans-serif;
+}
+body,
+input,
+textarea,
+code,
+tt,
+pre {
+  font-family: "Red Hat Text", sans-serif;
+}
+.wrapper {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+.pf-c-card__body {
+  height: inherit;
+}
+/* Overrides */
+.pf-l-gallery.pf-m-gutter {
+  --pf-l-gallery--m-gutter--GridGap: 1.5rem !important;
+}
+.pf-l-gallery {
+  --pf-l-gallery--GridTemplateColumns: repeat(
+    auto-fill,
+    minmax(300px, 1fr)
+  ) !important;
+}
+.pf-c-page__main-section {
+  --pf-c-page__main-section--BackgroundColor: #ffffff;
+}
+.pf-c-card__body:first-child {
+  --pf-c-card--first-child--PaddingTop: 0;
+}
+.pf-c-card__body {
+  --pf-c-card--child--PaddingRight: 0;
+  --pf-c-card--child--PaddingBottom: 0;
+  --pf-c-card--child--PaddingLeft: 0;
+}
+.pf-c-card.pf-m-selectable.card {
+  cursor: default;
+}
+.duration-radio-group .pf-c-radio__input {
+  --pf-c-radio__input--MarginTop: 1px;
+}
+.video-info > h5 > a {
+  --pf-global--link--Color: rgb(76, 76, 76);
+}
+.video-info > h5 {
+  font-weight: bold !important;
+}
+
+/* App specific CSS */
+.placeholder {
+  height: 100px;
+  background-color: #fafafa;
+}
+.search-wrapper {
+  width: 370px;
+}
+.pf-c-page__main {
+  background-color: #fff;
+}
+.pf-c-options-menu {
+  display: none !important;
+}
+.add-video-btn {
+  margin-left: auto;
+}
+.no-video-msg {
+  margin-bottom: 1rem;
+}
+.card {
+  text-align: left;
+  --pf-global--BackgroundColor--100: aliceblue;
+  overflow: hidden;
+  transition: all 120ms ease-in-out;
+  min-height: 10rem;
+}
+.card:hover {
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.16);
+  background: #2196f3;
+  border: 1px solid transparent;
+  --pf-c-card--m-flat--BorderWidth: 2px;
+  --pf-c-card--m-flat--BorderColor: #2196f3;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.card:hover aside {
+  padding-left: 1.5rem;
+  color: #ffffff;
+}
+.card:hover .video-info {
+  width: 70%;
+}
+.card:hover .video-info h5 > a {
+  color: #2196f3;
+}
+
+.card:hover .video-play {
+  color: white;
+}
+.card:hover aside .info {
+  color: white;
+  width: 74%;
+}
+
+.video-info {
+  display: flex;
+  padding: 1rem;
+  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  height: inherit;
+  width: 80%;
+  z-index: 1;
+  background: white;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 54%, 85% 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 54%, 85% 100%, 0 100%);
+  display: flex;
+  flex-direction: column;
+  transition: inherit;
+  min-height: 10rem;
+}
+.video-info h5 {
+  -webkit-box-orient: vertical;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  max-height: 3.5rem;
+  margin: 0;
+  margin-bottom: 0px;
+  margin-bottom: 0.25rem;
+  cursor: pointer;
+  outline: none;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  white-space: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: left;
+}
+
+.uploaded-by {
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.54);
+  line-height: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 2rem;
+  margin-top: auto;
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.54);
+}
+.card aside {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 40%;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 4.5rem;
+  transition: inherit;
+}
+.info {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.75rem;
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.54);
+  width: 54%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  transition: inherit;
+}
+.info > ion-icon {
+  cursor: help;
+}
+.card aside {
+  font-size: 4rem;
+  color: rgba(33, 150, 243, 0.24);
+  outline: none;
+}
+aside a.play-button {
+  cursor: pointer;
+}
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.form-container > div {
+  width: 49%;
+}
+.form-container ion-icon {
+  font-size: 1.25rem;
+}
+.open-outline-icon {
+  margin-left: 0.5rem;
+}
+.pf-c-tab-content {
+  padding: 1rem;
+  border-bottom: 1px solid rgb(240, 240, 240);
+  border-left: 1px solid rgb(240, 240, 240);
+  border-right: 1px solid rgb(240, 240, 240);
+  min-height: 80px !important;
+}
+.pf-c-tabs__list {
+  border-left: 1px solid rgb(240, 240, 240);
+  border-right: 1px solid rgb(240, 240, 240);
+}
+.pf-c-form__group-label {
+  margin-top: 1.5rem;
+}
+.test-url-btn > ion-icon,
+.pf-c-tabs__item-icon > ion-icon,
+.pf-c-button__icon > ion-icon {
+  vertical-align: -4px;
+}
+.duration-radio-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+.drive-upload-body {
+  color: #808080;
+}
+button.advanced-fields-icon {
+  margin-left: auto;
+}
+aside > a {
+  color: inherit;
+}
+.video-info:hover > h5 > a {
+  text-decoration: none;
+}
+.empty-state-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
+}
+.video-figure {
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.16);
+  margin: 0 0 1rem;
+}
+caption.video-source {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  padding: 1rem;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.87);
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.16);
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 240ms ease-in;
+}
+.video-source small {
+  margin-right: 0.5rem;
+}
+.video-details-section h5 {
+  font-size: 0.75rem;
+}
+.tags-container .pf-c-label {
+  font-size: 0.75rem;
+}
+video {
+  width: 100%;
+  border-radius: inherit;
+}
+.video-description {
+  font-size: 1rem;
+  white-space: pre-line;
+  max-height: 8.25rem;
+  overflow: auto;
+  margin-bottom: 1rem;
+}
+.pf-c-button.open-video-link {
+  position: absolute;
+  top: 1.6rem;
+  right: 4.5rem;
+}
+.pf-c-button.open-video-link ion-icon {
+  vertical-align: -2px;
+}
+.title-with-button .pf-c-modal-box__header {
+  width: 75%;
+}
+iframe.embed-responsive-item {
+  width: 100%;
+  height: 20rem;
+}
