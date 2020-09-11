@@ -6,12 +6,25 @@ import useGlobal from "../GlobalState";
 const WatchVideo = (props) => {
   const [globalState, globalActions] = useGlobal();
   useEffect(() => {
-    VideoAPIs.incrementViewCount(props.video._id).then((updatedViews) => {
-      let newArray = [...globalState.videos];
-      let index = newArray.findIndex((video) => video._id === props.video._id);
-      newArray[index] = { ...props.video, views: updatedViews };
-      globalActions.setVideos(newArray);
-    });
+    VideoAPIs.incrementViewCount(props.video._id)
+      .then((updatedViews) => {
+        let newArray = [...globalState.videos];
+        let index = newArray.findIndex(
+          (video) => video._id === props.video._id
+        );
+        newArray[index] = { ...props.video, views: updatedViews };
+        globalActions.setVideos(newArray);
+      })
+      .catch((err) => {
+        if (window.OpNotification) {
+          window.OpNotification.danger({
+            subject: err.message,
+            body: `There was some problem incrementing the views. Please try again in sometime.`,
+          });
+        } else {
+          console.error(err);
+        }
+      });
   }, []);
 
   const openVideoInTab = () => {

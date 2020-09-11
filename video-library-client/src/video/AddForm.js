@@ -83,12 +83,39 @@ const AddForm = (props) => {
 
     if (newVideo) {
       VideoAPIs.addVideo(newVideo)
+        .then((data) => {
+          if (window.OpNotification) {
+            window.OpNotification.success({
+              subject: `Video added successfully!`,
+            });
+          }
+        })
+        .catch((err) => {
+          if (window.OpNotification) {
+            window.OpNotification.danger({
+              subject: err.message,
+              body: `There was some problem adding the video. Please try again in sometime.`,
+            });
+          } else {
+            console.error(err);
+          }
+        })
         .then(() => {
           return VideoAPIs.listVideos();
         })
         .then((videos) => {
           globalActions.setVideos(videos);
           props.handleModalClose();
+        })
+        .catch((err) => {
+          if (window.OpNotification) {
+            window.OpNotification.danger({
+              subject: err.message,
+              body: `There was some problem fetching all the videos. Please try again in sometime.`,
+            });
+          } else {
+            console.error(err);
+          }
         });
     }
   };

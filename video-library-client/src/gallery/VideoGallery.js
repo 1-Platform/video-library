@@ -50,12 +50,23 @@ const VideoGallery = (props) => {
     const filterProps = ["title", "description", "tags", "createdBy", "source"];
     let sortedVideos = videos;
     if (videos.length === 0) {
-      VideoAPIs.listVideos().then((videoList) => {
-        globalActions.setVideoCount(videoList.length);
-        sortedVideos = videoList.sort(sorter);
-        globalActions.setVideos(sortedVideos);
-        extractSetPerPageVideos(sortedVideos);
-      });
+      VideoAPIs.listVideos()
+        .then((videoList) => {
+          globalActions.setVideoCount(videoList.length);
+          sortedVideos = videoList.sort(sorter);
+          globalActions.setVideos(sortedVideos);
+          extractSetPerPageVideos(sortedVideos);
+        })
+        .catch((err) => {
+          if (window.OpNotification) {
+            window.OpNotification.danger({
+              subject: err.message,
+              body: `There was some problem fetching all the videos. Please try again in sometime.`,
+            });
+          } else {
+            console.error(err);
+          }
+        });
     } else {
       if (searchTerm) {
         sortedVideos = Helpers.multiPropsFilter(
