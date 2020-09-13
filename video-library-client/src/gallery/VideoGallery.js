@@ -121,7 +121,7 @@ const VideoGallery = (props) => {
                         {video.createdBy || "No owner"}
                       </p>
                       <div className="footer">
-                        <span>22-Aug-2020</span>
+                        <span>{Helpers.formatDate(video.createdOn)}</span>
                         <span className="views">
                           {Helpers.roundOffViews(video.views || 0)} views
                         </span>

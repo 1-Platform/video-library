@@ -68,6 +68,11 @@ const AddForm = (props) => {
   const handleLengthChange = (checked, event) => {
     setApproxLength(event.currentTarget.value);
   };
+
+  const signIn = () => {
+    const url = `${process.env.REACT_APP_DRIVE_SIGN_IN_URL}?redirect_uri=${process.env.REACT_APP_CLIENT}/video-library&prompt=consent&response_type=code&client_id=${process.env.REACT_APP_DRIVE_CLIENT_ID}&scope=${process.env.REACT_APP_DRIVE_SCOPE}&access_type=offline`;
+    window.location = url;
+  };
   const addVideo = () => {
     const newVideo = {
       title,
@@ -238,6 +243,7 @@ const AddForm = (props) => {
                 <Button
                   icon={<ion-icon name="logo-google"></ion-icon>}
                   variant="danger"
+                  onClick={signIn}
                 >
                   {" "}
                   Sign In
