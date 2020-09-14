@@ -18,7 +18,7 @@ import VideoAPIs from "../services/VideoAPIs";
 import useGlobal from "../GlobalState";
 import { PlusCircleIcon } from "@patternfly/react-icons";
 
-const AddForm = (props) => {
+const VideoForm = (props) => {
   const video = props.video;
   // Ancilliary states
   const [activeTabKey, setActiveTabKey] = useState(0);
@@ -153,7 +153,7 @@ const AddForm = (props) => {
           if (window.OpNotification) {
             window.OpNotification.danger({
               subject: err.message,
-              body: `There was some problem adding the video. Please try again in sometime.`,
+              body: `There was a problem while adding the video. Please try again in sometime.`,
             });
           } else {
             console.error(err);
@@ -170,7 +170,7 @@ const AddForm = (props) => {
           if (window.OpNotification) {
             window.OpNotification.danger({
               subject: err.message,
-              body: `There was some problem fetching all the videos. Please try again in sometime.`,
+              body: `There was a problem while fetching all the videos. Please try again in sometime.`,
             });
           } else {
             console.error(err);
@@ -387,4 +387,4 @@ const AddForm = (props) => {
     </Form>
   );
 };
-export default AddForm;
+export default VideoForm;

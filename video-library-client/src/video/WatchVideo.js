@@ -19,7 +19,7 @@ const WatchVideo = (props) => {
         if (window.OpNotification) {
           window.OpNotification.danger({
             subject: err.message,
-            body: `There was some problem incrementing the views. Please try again in sometime.`,
+            body: `There was a problem incrementing the views. Please try again in sometime.`,
           });
         } else {
           console.error(err);

@@ -1,17 +1,19 @@
-VideoLibrary SPA
+Video Library SPA
 =================================================
 
-Video library SPA offer functionalities like listing videos, add the video and watch the video from difffrent sources.
-* Listing all the videos
+The Video library SPA offers functionalities like listing existing videos, adding new video, editing video information and watching video from different sources.
+* List videos
 * Add videos
-* Watch video
+* Edit video information
+* Watch videos
+
 
 Switch to the working directory
 ------------
 
  `cd video-library-client`.
 
-Install depndencies
+Install dependencies
 ------------
 Install project dependencies using
 

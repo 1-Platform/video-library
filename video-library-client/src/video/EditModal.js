@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal } from "@patternfly/react-core";
-import AddForm from "./AddForm";
+import VideoForm from "./VideoForm";
 import { useHistory, useLocation } from "react-router-dom";
 
 const EditModal = () => {
@@ -19,7 +19,7 @@ const EditModal = () => {
         onClose={handleModalClose}
         onEscapePress={handleModalClose}
       >
-        <AddForm video={video} handleModalClose={handleModalClose} />
+        <VideoForm video={video} handleModalClose={handleModalClose} />
       </Modal>
     </React.Fragment>
   );
