@@ -85,11 +85,9 @@ const VideoForm = (props) => {
       videoURL,
       approxLength,
       updatedOn: new Date(),
-      mailingLists: mailingLists
-        .split(",")
-        .map((list) => list.replace(" ", "")),
-      skipEmail: true,
-      tags: tags.split(",").map((list) => list.replace(" ", "")),
+      mailingLists: mailingLists.split(",").map((list) => list.trim()),
+      skipEmail: !!process.env.REACT_APP_SKIP_EMAIL,
+      tags: tags.split(",").map((tag) => tag.trim()),
     };
     VideoAPIs.updateVideo(updatedVideo)
       .then((data) => {
@@ -134,13 +132,11 @@ const VideoForm = (props) => {
       description,
       videoURL,
       approxLength,
-      createdBy: window.OpAuthHelper.getUserInfo().rhatUUID,
+      createdBy: window.OpAuthHelper?.getUserInfo().rhatUUID,
       createdOn: new Date(),
-      mailingLists: mailingLists
-        .split(",")
-        .map((list) => list.replace(" ", "")),
-      skipEmail: true,
-      tags: tags.split(",").map((list) => list.replace(" ", "")),
+      mailingLists: mailingLists.split(",").map((list) => list.trim()),
+      skipEmail: !!process.env.REACT_APP_SKIP_EMAIL,
+      tags: tags.split(",").map((tag) => tag.trim()),
     };
 
     if (newVideo) {

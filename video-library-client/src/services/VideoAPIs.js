@@ -9,7 +9,6 @@ import {
 export default {
   /**
    * Fetches all the videos
-   * @param {string} ldapCommonName
    */
   listVideos: () => {
     return Helpers.fetchClient({
@@ -18,7 +17,7 @@ export default {
   },
   /**
    * Adds the videos
-   * @param {string} ldapCommonName
+   * @param {object} video
    */
   addVideo: (video) => {
     return Helpers.fetchClient({
@@ -26,12 +25,20 @@ export default {
       variables: { video },
     }).then((data) => data.addGroup);
   },
+  /**
+   * Increment the video views by ID
+   * @param {ID} videoID
+   */
   incrementViewCount: (id) => {
     return Helpers.fetchClient({
       query: incrementViewCount,
       variables: { id },
     }).then((data) => data.incrementViewCount);
   },
+  /**
+   * Updates the video
+   * @param {object} video
+   */
   updateVideo: (video) => {
     return Helpers.fetchClient({
       query: updateVideo,

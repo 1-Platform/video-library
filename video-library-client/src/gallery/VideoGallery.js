@@ -30,10 +30,10 @@ const VideoGallery = (props) => {
         result = a.views > b.views ? -1 : 1;
         break;
       case "Newest first":
-        result = a.createdOn < b.createdOn ? -1 : 1;
+        result = a.createdOn < b.createdOn ? 1 : -1;
         break;
       case "Oldest first":
-        result = a.createdOn < b.createdOn ? 1 : -1;
+        result = a.createdOn < b.createdOn ? -1 : 1;
         break;
       default:
         result = a.title.toUpperCase() > b.title.toUpperCase() ? 1 : -1;

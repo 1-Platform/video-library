@@ -315,5 +315,6 @@ iframe.embed-responsive-item {
   color: #000;
 }
 .disable-edit-link {
+  margin-top: auto;
   cursor: not-allowed;
 }
