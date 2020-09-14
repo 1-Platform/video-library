@@ -102,7 +102,7 @@ const VideoForm = (props) => {
         if (window.OpNotification) {
           window.OpNotification.danger({
             subject: err.message,
-            body: `There was some problem updating the video. Please try again in sometime.`,
+            body: `There was a problem while updating the video. Please try again in sometime.`,
           });
         } else {
           console.error(err);
@@ -119,7 +119,7 @@ const VideoForm = (props) => {
         if (window.OpNotification) {
           window.OpNotification.danger({
             subject: err.message,
-            body: `There was some problem fetching all the videos. Please try again in sometime.`,
+            body: `There was a problem while fetching all the videos. Please try again in sometime.`,
           });
         } else {
           console.error(err);
