@@ -314,3 +314,6 @@ iframe.embed-responsive-item {
 .edit-video-link ion-icon {
   color: #000;
 }
+.disable-edit-link {
+  cursor: not-allowed;
+}

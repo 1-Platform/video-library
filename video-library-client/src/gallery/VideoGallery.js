@@ -121,17 +121,27 @@ const VideoGallery = (props) => {
                       <p className="uploaded-by">
                         {video.createdBy || "No owner"}
                       </p>
-                      <NavLink
-                        className="edit-video-link"
-                        to={{
-                          pathname: `/edit/${video._id}`,
-                          key: video._id,
-                          state: { video: video },
-                        }}
-                        title="Edit Video"
-                      >
-                        <ion-icon name="create-outline"></ion-icon>
-                      </NavLink>
+                      {video.createdBy ===
+                      window.OpAuthHelper?.getUserInfo().rhatUUID ? (
+                        <NavLink
+                          className="edit-video-link"
+                          to={{
+                            pathname: `/edit/${video._id}`,
+                            key: video._id,
+                            state: { video: video },
+                          }}
+                          title="Edit Video"
+                        >
+                          <ion-icon name="create-outline"></ion-icon>
+                        </NavLink>
+                      ) : (
+                        <span
+                          className="disable-edit-link"
+                          title="You are not authorized to edit this video information."
+                        >
+                          <ion-icon name="create-outline"></ion-icon>
+                        </span>
+                      )}
                       <div className="footer">
                         <span>{Helpers.formatDate(video.createdOn)}</span>
                         <span className="views">

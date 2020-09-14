@@ -84,6 +84,7 @@ const VideoForm = (props) => {
       description,
       videoURL,
       approxLength,
+      updatedOn: new Date(),
       mailingLists: mailingLists
         .split(",")
         .map((list) => list.replace(" ", "")),
@@ -133,6 +134,8 @@ const VideoForm = (props) => {
       description,
       videoURL,
       approxLength,
+      createdBy: window.OpAuthHelper.getUserInfo().rhatUUID,
+      createdOn: new Date(),
       mailingLists: mailingLists
         .split(",")
         .map((list) => list.replace(" ", "")),
