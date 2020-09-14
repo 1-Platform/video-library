@@ -1,5 +1,10 @@
 import Helpers from "./Helpers";
-import { addVideo, listVideos, incrementViewCount } from "./GqlQueries";
+import {
+  addVideo,
+  listVideos,
+  incrementViewCount,
+  updateVideo,
+} from "./GqlQueries";
 
 export default {
   /**
@@ -26,5 +31,11 @@ export default {
       query: incrementViewCount,
       variables: { id },
     }).then((data) => data.incrementViewCount);
+  },
+  updateVideo: (video) => {
+    return Helpers.fetchClient({
+      query: updateVideo,
+      variables: { video },
+    }).then((data) => data.updateVideo);
   },
 };

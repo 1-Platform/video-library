@@ -1,3 +1,22 @@
+const videoType = /* GraphQL */ `
+      _id
+      title
+      description
+      views
+      videoURL
+      fileID
+      source
+      length
+      approxLength
+      categories
+      mailingLists
+      tags
+      createdOn
+      createdBy
+      updatedOn
+      updatedBy
+`;
+
 export const addVideo = /* GraphQL */ `
   mutation AddVideo($video: VideoInput!) {
     addVideo(input: $video) {
@@ -16,25 +35,18 @@ export const incrementViewCount = /* GraphQL */ `
   }
 `;
 
+export const updateVideo = /* GraphQL */ `
+  mutation updateVideo($video: VideoInput!) {
+    updateVideo(input: $video) {
+      ${videoType}
+    }
+  }
+`;
+
 export const listVideos = /* GraphQL */ `
   query ListVideos {
     listVideos {
-      _id
-      title
-      description
-      views
-      videoURL
-      fileID
-      source
-      length
-      approxLength
-      categories
-      mailingLists
-      tags
-      createdOn
-      createdBy
-      updatedOn
-      updatedBy
+      ${videoType}
     }
   }
 `;

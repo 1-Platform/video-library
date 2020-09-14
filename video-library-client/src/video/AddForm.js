@@ -19,18 +19,21 @@ import useGlobal from "../GlobalState";
 import { PlusCircleIcon } from "@patternfly/react-icons";
 
 const AddForm = (props) => {
+  const video = props.video;
   // Ancilliary states
   const [activeTabKey, setActiveTabKey] = useState(0);
-  const [showLength, setShowLength] = useState(false);
-  const [advanceFields, setAdvanceFields] = useState(false);
+  const [showLength, setShowLength] = useState(!!video?.approxLength);
+  const [advanceFields, setAdvanceFields] = useState(!!video?.tags?.length);
   const [canAdd, setCanAdd] = useState(false);
   // Video property state
-  const [videoURL, setVideoURL] = useState("");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [mailingLists, setMailingLists] = useState("");
-  const [approxLength, setApproxLength] = useState("");
-  const [tags, setTags] = useState("");
+  const [videoURL, setVideoURL] = useState(video?.videoURL || "");
+  const [title, setTitle] = useState(video?.title || "");
+  const [description, setDescription] = useState(video?.description || "");
+  const [mailingLists, setMailingLists] = useState(
+    video?.mailingLists.join() || ""
+  );
+  const [approxLength, setApproxLength] = useState(video?.approxLength || "");
+  const [tags, setTags] = useState(video?.tags.join() || "");
   // Global state
   const [globalState, globalActions] = useGlobal();
 
@@ -73,6 +76,57 @@ const AddForm = (props) => {
     const url = `${process.env.REACT_APP_DRIVE_SIGN_IN_URL}?redirect_uri=${process.env.REACT_APP_CLIENT}/video-library&prompt=consent&response_type=code&client_id=${process.env.REACT_APP_DRIVE_CLIENT_ID}&scope=${process.env.REACT_APP_DRIVE_SCOPE}&access_type=offline`;
     window.location = url;
   };
+
+  const updateVideo = () => {
+    const updatedVideo = {
+      ...video,
+      title,
+      description,
+      videoURL,
+      approxLength,
+      mailingLists: mailingLists
+        .split(",")
+        .map((list) => list.replace(" ", "")),
+      skipEmail: true,
+      tags: tags.split(",").map((list) => list.replace(" ", "")),
+    };
+    VideoAPIs.updateVideo(updatedVideo)
+      .then((data) => {
+        if (window.OpNotification) {
+          window.OpNotification.success({
+            subject: `Video updated successfully!`,
+          });
+        }
+      })
+      .catch((err) => {
+        if (window.OpNotification) {
+          window.OpNotification.danger({
+            subject: err.message,
+            body: `There was some problem updating the video. Please try again in sometime.`,
+          });
+        } else {
+          console.error(err);
+        }
+      })
+      .then(() => {
+        return VideoAPIs.listVideos();
+      })
+      .then((videos) => {
+        globalActions.setVideos(videos);
+        props.handleModalClose();
+      })
+      .catch((err) => {
+        if (window.OpNotification) {
+          window.OpNotification.danger({
+            subject: err.message,
+            body: `There was some problem fetching all the videos. Please try again in sometime.`,
+          });
+        } else {
+          console.error(err);
+        }
+      });
+  };
+
   const addVideo = () => {
     const newVideo = {
       title,
@@ -303,11 +357,11 @@ const AddForm = (props) => {
         <Button
           key="submit"
           variant="primary"
-          onClick={addVideo}
+          onClick={props.video ? updateVideo : addVideo}
           icon={<PlusCircleIcon />}
           isDisabled={!canAdd}
         >
-          Add Video
+          {props.video ? "Update Video" : "Add Video"}
         </Button>
         <Button
           key="cancel"

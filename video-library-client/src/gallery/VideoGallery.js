@@ -80,7 +80,7 @@ const VideoGallery = (props) => {
       extractSetPerPageVideos(sortedVideos);
       globalActions.setVideoCount(sortedVideos.length);
     }
-  }, [page, sortBy, searchTerm]);
+  }, [page, sortBy, searchTerm, videos]);
 
   return (
     <React.Fragment>
@@ -113,6 +113,7 @@ const VideoGallery = (props) => {
                             key: video._id,
                             state: { video: video },
                           }}
+                          title="Watch Video"
                         >
                           {video.title || "Title not available"}
                         </NavLink>
@@ -120,6 +121,17 @@ const VideoGallery = (props) => {
                       <p className="uploaded-by">
                         {video.createdBy || "No owner"}
                       </p>
+                      <NavLink
+                        className="edit-video-link"
+                        to={{
+                          pathname: `/edit/${video._id}`,
+                          key: video._id,
+                          state: { video: video },
+                        }}
+                        title="Edit Video"
+                      >
+                        <ion-icon name="create-outline"></ion-icon>
+                      </NavLink>
                       <div className="footer">
                         <span>{Helpers.formatDate(video.createdOn)}</span>
                         <span className="views">
@@ -135,7 +147,10 @@ const VideoGallery = (props) => {
                           state: { video: video },
                         }}
                       >
-                        <ion-icon name="play-circle-outline"></ion-icon>
+                        <ion-icon
+                          name="play-circle-outline"
+                          title="Watch Video"
+                        ></ion-icon>
                       </NavLink>
                       <div className="info">
                         <ion-icon
