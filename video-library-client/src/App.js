@@ -40,7 +40,7 @@ const App = () => {
         <Route path="/edit/:id" component={EditModal} />
       </BrowserRouter>
       <opc-footer theme="blue">
-        <span slot="copyright">Copyright © 2020 All Rights Reserved.</span>
+        <span slot="copyright">Red Hat. All Rights Reserved.</span>
       </opc-footer>
     </React.StrictMode>
   );
