@@ -4,7 +4,7 @@ import VideoLibraryHelpers from "./helpers";
 export const VideoSchema: Schema = new Schema({
   title: String,
   description: String,
-  views: Number,
+  views: { type: Number, default: 0 },
   videoURL: String,
   fileID: { type: String, default: "" },
   source: String,
