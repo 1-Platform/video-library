@@ -82,7 +82,7 @@
     "@types/request": "2.48.5",
     "graphql-tag": "2.11.0",
     "husky": "2.7.0",
-    "jest": "25.5.4",
+    "jest": "26.4.2",
     "jest-transform-graphql": "2.1.0",
     "ts-loader": "8.0.4",
     "tslint": "5.20.1",
