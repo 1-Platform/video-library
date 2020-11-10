@@ -4,6 +4,8 @@ import { Transporter } from "nodemailer";
 import * as _ from "lodash";
 import VideoLibraryHelper from "./helpers";
 import { MailmanCron } from "./mailmanCron";
+import fetch from "node-fetch";
+import https from "https";
 
 const transporter: Transporter = nodemailer.createTransport({
   host: `${process.env.SMTP_CLIENT}`,
@@ -29,6 +31,35 @@ export const VideoLibraryResolver = {
     listVideos(root: any, args: any, ctx: any) {
       return VideoLibrary.find();
     },
+  },
+  VideoType: {
+    createdBy(parent: any, { input }: any, ctx: any) {
+      const body = `{
+          getUsersBy(rhatUUID: "${parent.createdBy}") {
+          name
+          isActive
+          createdBy
+        }
+      }`;
+      const headers = {
+        'Content-Type': 'application/json',
+        Authorization: `bearer: ${process.env.API_KEY}`,
+      };
+      const agent = new https.Agent({
+        rejectUnauthorized: false,
+      });
+    
+      const options = {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({query: body}),
+        agent: agent,
+      };
+      return fetch(`${process.env.API_GATEWAY_URL}`, options)
+      .then( res => res.json() )
+      .then( res => res.data?.getUsersBy ? res.data.getUsersBy[0].name : null )
+      .catch(console.error);
+    }
   },
   Mutation: {
     addVideo(root: any, { input }: any, ctx: any) {

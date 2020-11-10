@@ -13,6 +13,7 @@ pre {
   text-align: center;
   margin: 0 auto;
   max-width: 1200px;
+  min-height: 80vh;
 }
 .pf-c-card__body {
   height: inherit;
@@ -50,7 +51,18 @@ pre {
 .video-info > h5 {
   font-weight: bold !important;
 }
-
+.pf-c-toolbar__content {
+  --pf-c-toolbar__content--PaddingLeft: 0.75rem;
+  --pf-c-toolbar__content--PaddingRight: 0.75rem;
+}
+.video-page-section.pf-c-page__main-section {
+  min-height: 50vh !important;
+  --pf-c-page__main-section--PaddingLeft: 0.75rem;
+  --pf-c-page__main-section--PaddingRight: 0.75rem;
+}
+.loader-container{
+  min-height: 50vh;
+}
 /* App specific CSS */
 .placeholder {
   height: 100px;
