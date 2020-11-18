@@ -124,9 +124,9 @@ const VideoGallery = (props) => {
                         </NavLink>
                       </h5>
                       <p className="uploaded-by">
-                        {video.createdBy || "No owner"}
+                        {video.createdBy?.name || "No owner"}
                       </p>
-                      {video.createdBy === window.OpAuthHelper?.getUserInfo().fullName ? (
+                      {window.OpAuthHelper && video.createdBy?.name === window.OpAuthHelper?.getUserInfo().fullName ? (
                         <NavLink
                           className="edit-video-link"
                           to={{

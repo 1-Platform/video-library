@@ -34,30 +34,11 @@ export const VideoLibraryResolver = {
   },
   VideoType: {
     createdBy(parent: any, { input }: any, ctx: any) {
-      const body = `{
-          getUsersBy(rhatUUID: "${parent.createdBy}") {
-          name
-          isActive
-          createdBy
-        }
-      }`;
-      const headers = {
-        'Content-Type': 'application/json',
-        Authorization: `bearer: ${process.env.API_KEY}`,
-      };
-      const agent = new https.Agent({
-        rejectUnauthorized: false,
-      });
-    
-      const options = {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify({query: body}),
-        agent: agent,
-      };
-      return fetch(`${process.env.API_GATEWAY_URL}`, options)
-      .then( res => res.json() )
-      .then( res => res.data?.getUsersBy ? res.data.getUsersBy[0].name : null )
+      return VideoLibraryHelper.getUserDetails(parent.createdBy)
+      .catch(console.error);
+    },
+    updatedBy(parent: any, { input }: any, ctx: any) {
+      return VideoLibraryHelper.getUserDetails(parent.updatedBy)
       .catch(console.error);
     }
   },
@@ -132,5 +113,5 @@ Sent from One Portal: ${process.env.CLIENT}`,
       new MailmanCron().getEmailArchives();
       return "Import Initiated...";
     }
-  }
+  }  
 }

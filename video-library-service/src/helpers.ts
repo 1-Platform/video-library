@@ -1,4 +1,6 @@
 // write your helper functions here
+import fetch from "node-fetch";
+import https from "https";
 
 class VideoLibraryHelpers {
     private static instance: VideoLibraryHelpers;
@@ -76,6 +78,40 @@ class VideoLibraryHelpers {
       }
       return "> 5 min";
     }
+    getUserDetails(rhatUUID: String){
+      const body = `{
+        getUsersBy(rhatUUID: "${rhatUUID}") {
+          _id
+          name
+          title
+          uid
+          rhatUUID
+          memberOf
+          isActive
+          apiRole
+          createdBy
+          createdOn
+          updatedBy
+          updatedOn
+        }
+      }`;
+      const headers = {
+        'Content-Type': 'application/json',
+        Authorization: `bearer: ${process.env.API_KEY}`,
+      };
+      const agent = new https.Agent({
+        rejectUnauthorized: false,
+      });
+    
+      const options = {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({query: body}),
+        agent: agent,
+      };
+      return fetch(`${process.env.API_GATEWAY_URL}`, options)
+      .then( res => res.json() )
+      .then( res => {  console.log(rhatUUID);console.log(res); return res.data?.getUsersBy ? res.data.getUsersBy[0] : null} );
+    } 
   }
 export default VideoLibraryHelpers.getInstance();
-

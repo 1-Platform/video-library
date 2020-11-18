@@ -41,9 +41,9 @@ type VideoType {
   categories: [String]
   mailingLists: [String]
   tags: [String]
-  createdBy: String
+  createdBy: UserType
   createdOn: DateTime
-  updatedBy: String
+  updatedBy: UserType
   updatedOn: DateTime
 }
 
@@ -65,4 +65,24 @@ input VideoInput {
   updatedBy: String
   updatedOn: DateTime
   skipEmail: Boolean
+}
+
+type UserType {
+  _id: String
+  name: String
+  title: String
+  uid: String
+  rhatUUID: String
+  memberOf: [String]
+  isActive: Boolean
+  apiRole: APIROLE
+  createdBy: String
+  createdOn: DateTime
+  updatedBy: String
+  updatedOn: DateTime
+}
+
+enum APIROLE {
+  ADMIN
+  USER
 }

@@ -23,7 +23,7 @@ export default {
     return Helpers.fetchClient({
       query: addVideo,
       variables: { video },
-    }).then((data) => data.addGroup);
+    }).then((data) => data.addVideo);
   },
   /**
    * Increment the video views by ID
