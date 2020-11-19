@@ -111,7 +111,7 @@ class VideoLibraryHelpers {
       };
       return fetch(`${process.env.API_GATEWAY_URL}`, options)
       .then( res => res.json() )
-      .then( res => {  console.log(rhatUUID);console.log(res); return res.data?.getUsersBy ? res.data.getUsersBy[0] : null} );
+      .then( res => res.data?.getUsersBy ? res.data.getUsersBy[0] : null );
     } 
   }
 export default VideoLibraryHelpers.getInstance();
