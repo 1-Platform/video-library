@@ -99,7 +99,7 @@ export class MailmanCron {
                           "tags": [ "mailman-import" ],
                           "mailingLists": [process.env.EMAIL],
                           "createdOn": mail.date,
-                          "createdBy": res.data?.getUsersBy ? res.data?.getUsersBy[0].rhatUUID : 'null',
+                          "createdBy": res.data?.getUsersBy ? res.data?.getUsersBy[0].rhatUUID : null,
                           "fileID": Math.random().toString(36).slice(2),
                         });
                         videoData.save();
