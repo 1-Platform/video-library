@@ -5,6 +5,8 @@ import {
   Button,
   Gallery,
   PageSection,
+  Spinner,
+  Bullseye
 } from "@patternfly/react-core";
 import useGlobal from "../GlobalState";
 import { PlusCircleIcon } from "@patternfly/react-icons";
@@ -13,6 +15,7 @@ import VideoAPIs from "../services/VideoAPIs";
 import Helpers from "../services/Helpers";
 
 const VideoGallery = (props) => {
+  const [loading, setLoading] = useState(true);
   const [pageVideos, setPageVideos] = useState([]);
   const [globalState, globalActions] = useGlobal();
   const { page, perPage, sortBy, searchTerm, videos } = globalState;
@@ -56,6 +59,7 @@ const VideoGallery = (props) => {
           sortedVideos = videoList.sort(sorter);
           globalActions.setVideos(sortedVideos);
           extractSetPerPageVideos(sortedVideos);
+          setLoading(false);
         })
         .catch((err) => {
           if (window.OpNotification) {
@@ -84,8 +88,9 @@ const VideoGallery = (props) => {
 
   return (
     <React.Fragment>
-      <PageSection>
-        {pageVideos.length === 0 ? (
+      <PageSection className="video-page-section">
+        { loading &&  <Bullseye className="loader-container"><Spinner /></Bullseye> } 
+        { pageVideos.length === 0 && !loading ? (
           <div>
             <div className="no-video-msg">
               No videos found for the selected filters.
@@ -119,10 +124,9 @@ const VideoGallery = (props) => {
                         </NavLink>
                       </h5>
                       <p className="uploaded-by">
-                        {video.createdBy || "No owner"}
+                        {video.createdBy?.name || "No owner"}
                       </p>
-                      {video.createdBy ===
-                      window.OpAuthHelper?.getUserInfo().rhatUUID ? (
+                      {window.OpAuthHelper && video.createdBy?.name === window.OpAuthHelper?.getUserInfo().fullName ? (
                         <NavLink
                           className="edit-video-link"
                           to={{
@@ -165,7 +169,7 @@ const VideoGallery = (props) => {
                       <div className="info">
                         <ion-icon
                           name={Helpers.getSourceIcon(video.source)}
-                          title={`Video Source: ${video.source.toUpperCase()}`}
+                          title={`Video Source: ${video.source?.toUpperCase()}`}
                         ></ion-icon>
                         <span className="length">
                           {video.length

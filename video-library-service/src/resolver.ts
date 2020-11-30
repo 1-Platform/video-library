@@ -4,6 +4,8 @@ import { Transporter } from "nodemailer";
 import * as _ from "lodash";
 import VideoLibraryHelper from "./helpers";
 import { MailmanCron } from "./mailmanCron";
+import fetch from "node-fetch";
+import https from "https";
 
 const transporter: Transporter = nodemailer.createTransport({
   host: `${process.env.SMTP_CLIENT}`,
@@ -29,6 +31,16 @@ export const VideoLibraryResolver = {
     listVideos(root: any, args: any, ctx: any) {
       return VideoLibrary.find();
     },
+  },
+  VideoType: {
+    createdBy(parent: any, { input }: any, ctx: any) {
+      return VideoLibraryHelper.getUserDetails(parent.createdBy)
+      .catch(console.error);
+    },
+    updatedBy(parent: any, { input }: any, ctx: any) {
+      return VideoLibraryHelper.getUserDetails(parent.updatedBy)
+      .catch(console.error);
+    }
   },
   Mutation: {
     addVideo(root: any, { input }: any, ctx: any) {
@@ -101,5 +113,5 @@ Sent from One Portal: ${process.env.CLIENT}`,
       new MailmanCron().getEmailArchives();
       return "Import Initiated...";
     }
-  }
+  }  
 }

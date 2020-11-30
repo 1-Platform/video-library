@@ -3,6 +3,8 @@ import * as fs from "fs";
 import { simpleParser } from "mailparser";
 import { exec } from "child_process";
 import { VideoLibrary } from "./schema";
+import fetch from "node-fetch";
+import https from "https";
 
 /**
  * @class MailmanCron
@@ -67,16 +69,42 @@ export class MailmanCron {
                 if (mail.subject.match(replyRegex) === null && mail.from.value[0].address !== `${process.env.NOREPLY_EMAIL}`) {
                   VideoLibrary.find({title: mail.subject}).then((dbVideo: any) => {
                     if (dbVideo.length === 0) {
-                      const videoData = new VideoLibrary({
-                        "title": mail.subject,
-                        "description": mail.text,
-                        "tags": [ "mailman-import" ],
-                        "mailingLists": [process.env.EMAIL],
-                        "createdOn": mail.date,
-                        "createdBy": mail.from.value[0].name,
-                        "fileID": Math.random().toString(36).slice(2),
+                      const body = `{
+                        getUsersBy(name: "${mail.from.value[0].name}") {
+                          rhatUUID,
+                          name
+                        }
+                      }`;
+                      const headers = {
+                        'Content-Type': 'application/json',
+                        Authorization: `bearer: ${process.env.API_KEY}`,
+                      };
+                      const agent = new https.Agent({
+                        rejectUnauthorized: false,
                       });
-                      videoData.save();
+                    
+                      const options = {
+                        method: 'POST',
+                        headers: headers,
+                        body: JSON.stringify({query: body}),
+                        agent: agent,
+                      };
+              
+                      fetch(`${process.env.API_GATEWAY_URL}`, options)
+                      .then( res => res.json() )
+                      .then( (res) => {
+                        const videoData = new VideoLibrary({
+                          "title": mail.subject,
+                          "description": mail.text,
+                          "tags": [ "mailman-import" ],
+                          "mailingLists": [process.env.EMAIL],
+                          "createdOn": mail.date,
+                          "createdBy": res.data?.getUsersBy ? res.data?.getUsersBy[0].rhatUUID : null,
+                          "fileID": Math.random().toString(36).slice(2),
+                        });
+                        videoData.save();
+                      } )
+                      .catch(console.error);
                     }
                   });
                 }

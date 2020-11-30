@@ -56,7 +56,7 @@ const multiPropsFilter = (videos, searchProps, searchTerm) => {
       regex.test(video["title"]) ||
       regex.test(video["description"]) ||
       regex.test(video["tags"].join(";")) ||
-      regex.test(video["createdBy"]) ||
+      !!video.createdBy && regex.test(video.createdBy["name"]) ||
       regex.test(video["source"])
     );
   });

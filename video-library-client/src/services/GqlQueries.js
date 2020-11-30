@@ -12,9 +12,13 @@ const videoType = /* GraphQL */ `
       mailingLists
       tags
       createdOn
-      createdBy
+      createdBy{
+        name
+      }
       updatedOn
-      updatedBy
+      updatedBy{
+        name
+      }
 `;
 
 export const addVideo = /* GraphQL */ `
