@@ -51,7 +51,7 @@ export const VideoLibraryResolver = {
               if (!video) {
                 throw new Error("An unexpected error has occured");
               }
-              return video as Video;
+              return video;
             });
         })
         .then(video => {
