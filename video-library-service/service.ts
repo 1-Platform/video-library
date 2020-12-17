@@ -1,6 +1,6 @@
 import dotenv from 'dotenv-safe';
 if ( process.env.NODE_ENV === 'test' ) {
-  dotenv.config( { path: '.test.env' } );
+  dotenv.config( { path: 'e2e/.test.env' } );
 } else {
   dotenv.config();
 }
