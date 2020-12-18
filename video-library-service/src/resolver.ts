@@ -4,8 +4,6 @@ import { Transporter } from "nodemailer";
 import * as _ from "lodash";
 import VideoLibraryHelper from "./helpers";
 import { MailmanCron } from "./mailmanCron";
-import fetch from "node-fetch";
-import https from "https";
 
 const transporter: Transporter = nodemailer.createTransport({
   host: `${process.env.SMTP_CLIENT}`,
@@ -93,7 +91,7 @@ Sent from One Portal: ${process.env.CLIENT}`,
     updateVideo(root: any, { input }: any, ctx: any) {
       return VideoLibrary.findByIdAndUpdate(input._id, input, { new: true });
     },
-    incrementViewCount(root: any, { _id }: any, ctx: any) {
+    incrementVideoViewCount(root: any, { _id }: any, ctx: any) {
       return VideoLibrary.findByIdAndUpdate(_id, { $inc: { views: 1 }}, { new: true })
         .exec()
         .then(res => {

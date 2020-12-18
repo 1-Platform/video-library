@@ -57,7 +57,7 @@ const VideoGallery = (props) => {
         .then((videoList) => {
           globalActions.setVideoCount(videoList.length);
           sortedVideos = videoList.sort(sorter);
-          if ( videos.length !== 0 ) {
+          if ( sortedVideos.length !== 0 ) {
             globalActions.setVideos(sortedVideos);
           }
           extractSetPerPageVideos(sortedVideos);
