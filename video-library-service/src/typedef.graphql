@@ -19,7 +19,7 @@ type Mutation {
   updateVideo(input: VideoInput!): VideoType
 
   # Increments the view count of a Video
-  incrementViewCount(_id: ID!): Int
+  incrementVideoViewCount(_id: ID!): Int
 
   # Removes a Video by ID
   removeVideo(_id: String!): VideoType
