@@ -33,9 +33,9 @@ export const addVideo = /* GraphQL */ `
   }
 `;
 
-export const incrementViewCount = /* GraphQL */ `
-  mutation incrementViewCount($id: ID!) {
-    incrementViewCount(_id: $id)
+export const incrementVideoViewCount = /* GraphQL */ `
+  mutation incrementVideoViewCount($id: ID!) {
+    incrementVideoViewCount(_id: $id)
   }
 `;
 

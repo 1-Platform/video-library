@@ -6,7 +6,7 @@ import useGlobal from "../GlobalState";
 const WatchVideo = (props) => {
   const [globalState, globalActions] = useGlobal();
   useEffect(() => {
-    VideoAPIs.incrementViewCount(props.video._id)
+    VideoAPIs.incrementVideoViewCount(props.video._id)
       .then((updatedViews) => {
         let newArray = [...globalState.videos];
         let index = newArray.findIndex(
