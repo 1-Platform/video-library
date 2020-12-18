@@ -59,8 +59,8 @@ const query = `
       ...VideoFragment
     }
   }
-  mutation incrementViewCount($id: ID!) {
-    incrementViewCount(_id: $id)
+  mutation incrementVideoViewCount($id: ID!) {
+    incrementVideoViewCount(_id: $id)
   }
 
 `;
@@ -179,14 +179,14 @@ describe('VideoLibrary microservice API Test', () => {
       .post('/graphql')
       .send({
         query: query,
-        operationName: 'incrementViewCount',
+        operationName: 'incrementVideoViewCount',
         variables: { id: "5d2f8df499410e01d3da3d62" }
       })
       .expect(res => {
         expect(res.body).not.toHaveProperty('errors');
         expect(res.body).toHaveProperty('data');
 
-        expect(res.body.data).toHaveProperty('incrementViewCount');
+        expect(res.body.data).toHaveProperty('incrementVideoViewCount');
       })
       .end((err, res) => {
         done(err);

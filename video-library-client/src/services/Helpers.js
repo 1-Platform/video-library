@@ -7,6 +7,7 @@ const fetchClient = (body) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${window.OpAuthHelper?.jwtToken}`
     },
     body: JSON.stringify(body),
   })
