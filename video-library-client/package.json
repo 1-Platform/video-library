@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "/video-library/",
   "dependencies": {
-    "@patternfly/react-core": "4.84.3",
+    "@patternfly/react-core": "4.84.4",
     "@testing-library/jest-dom": "5.11.6",
     "@testing-library/react": "11.2.2",
     "@testing-library/user-event": "12.6.0",
@@ -40,7 +40,7 @@
     ]
   },
   "devDependencies": {
-    "eslint": "7.15.0",
+    "eslint": "7.16.0",
     "eslint-plugin-react": "7.21.5"
   },
   "lint-staged": {
