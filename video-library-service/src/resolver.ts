@@ -80,7 +80,7 @@ ${userDetails?.name} has recently added a video to the One Portal Video Library.
 Video Title: ${video.title}
 
 Video Description:
-\t${video.description || `A Demo was recently created for ${video.title} by ${userDetails?.name}.`}
+\t${video.description || `A demo was recently created for ${video.title} by ${userDetails?.name}.`}
 
 Video Length: ${VideoLibraryHelper.humanizeTime(video.length, { fallbackString: video.approxLength })}
 To watch this video on One Portal, follow this link: ${process.env.CLIENT}/video-library?videoID=${video.fileID || video._id}
