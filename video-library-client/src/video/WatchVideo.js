@@ -92,7 +92,7 @@ const WatchVideo = (props) => {
         <div>
           <div>
             <h5>Added by:</h5>
-            <p>{props.video.createdBy || ""}</p>
+            <p>{props.video.createdBy?.name || ""}</p>
           </div>
         </div>
         <h5>Additional Tags:</h5>

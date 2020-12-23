@@ -78,23 +78,7 @@ class VideoLibraryHelpers {
       }
       return "> 5 min";
     }
-    getUserDetails(rhatUUID: String){
-      const body = `{
-        getUsersBy(rhatUUID: "${rhatUUID}") {
-          _id
-          name
-          title
-          uid
-          rhatUUID
-          memberOf
-          isActive
-          apiRole
-          createdBy
-          createdOn
-          updatedBy
-          updatedOn
-        }
-      }`;
+    fetchUserDetails(query: String){
       const headers = {
         'Content-Type': 'application/json',
         Authorization: `bearer: ${process.env.API_KEY}`,
@@ -106,12 +90,33 @@ class VideoLibraryHelpers {
       const options = {
         method: 'POST',
         headers: headers,
-        body: JSON.stringify({query: body}),
+        body: JSON.stringify({query: query}),
         agent: agent,
       };
       return fetch(`${process.env.API_GATEWAY_URL}`, options)
       .then( res => res.json() )
-      .then( res => res.data?.getUsersBy ? res.data.getUsersBy[0] : null );
-    } 
+    }
+    getMultipleUserDetails(videos: Video[]){
+      let userIDs = videos.reduce((acc: any, video:any) => {
+        if (!!video.createdBy && acc.findIndex( (user: any) => ""+video.createdBy === ""+user.rhatUUID ) === -1) {
+          acc.push({ rhatUUID: video.createdBy });
+        }
+        if (!!video.updatedBy && acc.findIndex( (user: any) => ""+video.updatedBy === ""+user.rhatUUID ) === -1) {
+          acc.push({ rhatUUID: video.updatedBy });
+        }
+        return acc;
+      }, <any[]>[]);
+      console.log("userIDs", userIDs);
+      const query = /* GraphQL */`
+        query UserDetails {
+          ${
+            userIDs
+              .map( (user: any, index: number) => `u${index}: getUsersBy(rhatUUID:"${user.rhatUUID}"){ name uid rhatUUID }`)
+              .join('')
+            }
+          }
+      `;
+      return this.fetchUserDetails(query);
+    }
   }
 export default VideoLibraryHelpers.getInstance();

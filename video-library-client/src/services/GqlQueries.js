@@ -14,10 +14,12 @@ const videoType = /* GraphQL */ `
       createdOn
       createdBy{
         name
+        rhatUUID
       }
       updatedOn
       updatedBy{
         name
+        rhatUUID
       }
 `;
 
