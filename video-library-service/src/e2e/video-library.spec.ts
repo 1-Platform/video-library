@@ -24,9 +24,13 @@ const query = `
     mailingLists
     tags
     createdOn
-    createdBy
+    createdBy{
+      name
+    }
     updatedOn
-    updatedBy
+    updatedBy{
+      name
+    }
   }
 
   query listVideos {

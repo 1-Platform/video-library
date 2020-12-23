@@ -1,6 +1,6 @@
 import dotenv from 'dotenv-safe';
 if ( process.env.NODE_ENV === 'test' ) {
-  dotenv.config( { path: 'e2e/.test.env' } );
+  dotenv.config( { path: 'src/e2e/.test.env' } );
 } else {
   dotenv.config();
 }
@@ -12,15 +12,11 @@ import mongoose from 'mongoose';
 
 import gqlSchema from './src/typedef.graphql';
 import { VideoLibraryResolver as resolver } from './src/resolver';
-import cookieParser = require('cookie-parser');
 
 /* Setting port for the server */
 const port = process.env.PORT || 8080;
 
 const app = express();
-
-// Mount cookie parser
-app.use(cookieParser());
 
 const extensions = [() => new ApolloLogExtension({
   level: 'info',
