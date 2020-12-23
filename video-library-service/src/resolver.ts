@@ -30,7 +30,7 @@ export const VideoLibraryResolver = {
       return VideoLibrary.find().then( async videos => {
         const userResponse = await VideoLibraryHelper.getMultipleUserDetails(videos);
         const userMap = Object.values<any>(userResponse.data)
-          .reduce((acc, user, index) => {
+          .reduce((acc, user) => {
             if (user?.length > 0) {
               acc[user[0].rhatUUID] = user[0];
             }
@@ -65,7 +65,6 @@ export const VideoLibraryResolver = {
           }`;
           const userDetails = await VideoLibraryHelper.fetchUserDetails(query)
           .then( res => res.data?.getUsersBy ? res.data.getUsersBy[0] : null );
-          console.log("User Details", userDetails);
           if (input.skipEmail !== true) {
             const cc = video.mailingLists.filter((email: any) => !!email && email !== process.env.EMAIL);
             transporter.sendMail({

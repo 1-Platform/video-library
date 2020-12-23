@@ -106,7 +106,6 @@ class VideoLibraryHelpers {
         }
         return acc;
       }, <any[]>[]);
-      console.log("userIDs", userIDs);
       const query = /* GraphQL */`
         query UserDetails {
           ${
