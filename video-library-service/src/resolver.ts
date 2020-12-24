@@ -27,18 +27,22 @@ export const VideoLibraryResolver = {
       return VideoLibrary.find(cleanedInput);
     },
     listVideos(root: any, args: any, ctx: any) {
-      return VideoLibrary.find();
+      return VideoLibrary.find().then( async videos => {
+        const userResponse = await VideoLibraryHelper.getMultipleUserDetails(videos);
+        const userMap = Object.values<any>(userResponse.data)
+          .reduce((acc, user) => {
+            if (user?.length > 0) {
+              acc[user[0].rhatUUID] = user[0];
+            }
+            return acc;
+          }, {});
+        return videos.map(video => ({
+          ...video.toObject(),
+          createdBy: userMap[video.createdBy] || { rhatUUID: video.createdBy },
+          updatedBy: userMap[video.updatedBy] || { rhatUUID: video.updatedBy },
+        }));
+      });
     },
-  },
-  VideoType: {
-    createdBy(parent: any, { input }: any, ctx: any) {
-      return VideoLibraryHelper.getUserDetails(parent.createdBy)
-      .catch(console.error);
-    },
-    updatedBy(parent: any, { input }: any, ctx: any) {
-      return VideoLibraryHelper.getUserDetails(parent.updatedBy)
-      .catch(console.error);
-    }
   },
   Mutation: {
     addVideo(root: any, { input }: any, ctx: any) {
@@ -52,23 +56,31 @@ export const VideoLibraryResolver = {
               return video;
             });
         })
-        .then(video => {
+        .then(async video => {
+          const query = `{
+            getUsersBy(rhatUUID: "${video.createdBy}") {
+              name
+              rhatUUID
+            }
+          }`;
+          const userDetails = await VideoLibraryHelper.fetchUserDetails(query)
+          .then( res => res.data?.getUsersBy ? res.data.getUsersBy[0] : null );
           if (input.skipEmail !== true) {
             const cc = video.mailingLists.filter((email: any) => !!email && email !== process.env.EMAIL);
             transporter.sendMail({
-              from: `${video.createdBy} <${process.env.NOREPLY_EMAIL}>`,
+              from: `${userDetails?.name} <${process.env.NOREPLY_EMAIL}>`,
               to: process.env.TO_EMAIL,
               cc: cc.join(", "),
               messageId: `${video._id}`,
               subject: `[Demo] ${video.title} (${VideoLibraryHelper.humanizeTime(video.length, { fallbackString: video.approxLength })})`,
               text: `Hello,
 
-${video.createdBy} has recently added a video to the One Portal Video Library.
+${userDetails?.name} has recently added a video to the One Portal Video Library.
 
 Video Title: ${video.title}
 
 Video Description:
-\t${video.description || `A Demo was recently created for ${video.title} by ${video.createdBy}.`}
+\t${video.description || `A demo was recently created for ${video.title} by ${userDetails?.name}.`}
 
 Video Length: ${VideoLibraryHelper.humanizeTime(video.length, { fallbackString: video.approxLength })}
 To watch this video on One Portal, follow this link: ${process.env.CLIENT}/video-library?videoID=${video.fileID || video._id}

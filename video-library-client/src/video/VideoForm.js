@@ -85,6 +85,8 @@ const VideoForm = (props) => {
       videoURL,
       approxLength,
       updatedOn: new Date(),
+      updatedBy: window.OpAuthHelper?.getUserInfo().rhatUUID,
+      createdBy: video.createdBy?.rhatUUID,
       mailingLists: mailingLists.split(",").map((list) => list.trim()),
       skipEmail: !!process.env.REACT_APP_SKIP_EMAIL,
       tags: tags.split(",").map((tag) => tag.trim()),
