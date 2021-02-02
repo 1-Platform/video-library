@@ -117,5 +117,31 @@ class VideoLibraryHelpers {
       `;
       return this.fetchUserDetails(query);
     }
+    populateUserFields(videos: any) {
+      if(videos.length > 0) {
+        return this.getUserMap(videos).then( (userMap: any) => 
+          videos.map((video: any) => {
+            return {
+              ...(video._doc),
+              createdBy: userMap[video.createdBy] || { rhatUUID: video.createdBy },
+              updatedBy: userMap[video.updatedBy] || { rhatUUID: video.updatedBy },
+            };
+          })
+        );
+      }
+      else {
+        return videos;
+      }
+    }
+    async getUserMap(videos: any) {
+      const userResponse = await this.getMultipleUserDetails(videos);
+      return Object.values<any>(userResponse.data)
+        .reduce((acc, user) => {
+          if (user?.length > 0) {
+            acc[user[0].rhatUUID] = user[0];
+          }
+          return acc;
+        }, {});
+    }
   }
 export default VideoLibraryHelpers.getInstance();
