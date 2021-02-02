@@ -81,7 +81,7 @@ class VideoLibraryHelpers {
     fetchUserDetails(query: String){
       const headers = {
         'Content-Type': 'application/json',
-        Authorization: `bearer: ${process.env.API_KEY}`,
+        Authorization: `Bearer ${process.env.API_KEY}`,
       };
       const agent = new https.Agent({
         rejectUnauthorized: false,
