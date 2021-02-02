@@ -20,28 +20,28 @@ const transporter: Transporter = nodemailer.createTransport({
 export const VideoLibraryResolver = {
   Query: {
     getVideo(root: any, { _id }: any, ctx: any) {
-      return VideoLibrary.findById(_id);
+      return VideoLibrary.findById(_id)
+      .then( (video: any) => {
+        if(video) {
+          return VideoLibraryHelper.getUserMap([video])
+            .then( (userMap: any) => {
+              return {
+                ...video._doc,
+                createdBy: userMap[video.createdBy] || { rhatUUID: video.createdBy },
+                updatedBy: userMap[video.updatedBy] || { rhatUUID: video.updatedBy },
+            }})
+        }
+        else {
+          return video;
+        }
+      });
     },
     getVideosBy(root: any, { input }: any, ctx: any) {
       const cleanedInput = _.pick(input, ["title", "description", "views", "fileID", "_id"]);
-      return VideoLibrary.find(cleanedInput);
+      return VideoLibrary.find(cleanedInput).then( (videos: any) => VideoLibraryHelper.populateUserFields(videos) );
     },
     listVideos(root: any, args: any, ctx: any) {
-      return VideoLibrary.find().then( async videos => {
-        const userResponse = await VideoLibraryHelper.getMultipleUserDetails(videos);
-        const userMap = Object.values<any>(userResponse.data)
-          .reduce((acc, user) => {
-            if (user?.length > 0) {
-              acc[user[0].rhatUUID] = user[0];
-            }
-            return acc;
-          }, {});
-        return videos.map(video => ({
-          ...video.toObject(),
-          createdBy: userMap[video.createdBy] || { rhatUUID: video.createdBy },
-          updatedBy: userMap[video.updatedBy] || { rhatUUID: video.updatedBy },
-        }));
-      });
+      return VideoLibrary.find().then( (videos: any) => VideoLibraryHelper.populateUserFields(videos) );
     },
   },
   Mutation: {
@@ -49,7 +49,7 @@ export const VideoLibraryResolver = {
       return new VideoLibrary(input).save()
         .then(res => {
           return VideoLibrary.findById(res._id)
-            .then(video => {
+            .then( (video: any) => {
               if (!video) {
                 throw new Error("An unexpected error has occured");
               }
@@ -106,7 +106,7 @@ Sent from One Portal: ${process.env.CLIENT}`,
     incrementVideoViewCount(root: any, { _id }: any, ctx: any) {
       return VideoLibrary.findByIdAndUpdate(_id, { $inc: { views: 1 }}, { new: true })
         .exec()
-        .then(res => {
+        .then( (res: any) => {
           if (!res) {
             throw new Error("Video Not Found");
           }
@@ -114,7 +114,7 @@ Sent from One Portal: ${process.env.CLIENT}`,
         });
     },
     removeVideo(root: any, { _id }: any, ctx: any) {
-      return VideoLibrary.findByIdAndRemove(_id).then(res => res);
+      return VideoLibrary.findByIdAndRemove(_id).then((res: any) => res);
     },
     /**
      * Initiates the import script for mailman
