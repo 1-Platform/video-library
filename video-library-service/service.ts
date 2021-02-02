@@ -50,12 +50,14 @@ const apollo = new ApolloServer({
   subscriptions: {
     path: '/subscriptions',
   },
-  formatError: error => ({
-    message: error.message,
-    locations: error.locations,
-    stack: error.stack ? error.stack.split('\n') : [],
-    path: error.path,
-  }),
+  formatError: error => {
+    console.error(error);
+    return {
+      message: error.message,
+      locations: error.locations,
+      stack: error.stack ? error.stack.split('\n') : [],
+      path: error.path,
+  }},
   extensions
 });
 
