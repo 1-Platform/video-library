@@ -324,10 +324,12 @@ const VideoForm = (props) => {
             </Tab>
           </Tabs>
           <FormGroup
+            isRequired
             label="CC the following Mailing Lists"
             fieldId="ccemail-input"
           >
             <TextInput
+              isRequired
               type="email"
               id="ccemail-input"
               name="mailingLists"
