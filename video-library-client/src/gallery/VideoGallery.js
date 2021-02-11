@@ -6,13 +6,14 @@ import {
   Gallery,
   PageSection,
   Spinner,
-  Bullseye
+  Bullseye,
 } from "@patternfly/react-core";
 import useGlobal from "../GlobalState";
 import { PlusCircleIcon } from "@patternfly/react-icons";
 import { NavLink } from "react-router-dom";
 import VideoAPIs from "../services/VideoAPIs";
 import Helpers from "../services/Helpers";
+import ReactTooltip from "react-tooltip";
 
 const VideoGallery = (props) => {
   const [loading, setLoading] = useState(true);
@@ -57,7 +58,7 @@ const VideoGallery = (props) => {
         .then((videoList) => {
           globalActions.setVideoCount(videoList.length);
           sortedVideos = videoList.sort(sorter);
-          if ( sortedVideos.length !== 0 ) {
+          if (sortedVideos.length !== 0) {
             globalActions.setVideos(sortedVideos);
           }
           extractSetPerPageVideos(sortedVideos);
@@ -91,8 +92,12 @@ const VideoGallery = (props) => {
   return (
     <React.Fragment>
       <PageSection className="video-page-section">
-        { loading &&  <Bullseye className="loader-container"><Spinner /></Bullseye> } 
-        { pageVideos.length === 0 && !loading ? (
+        {loading && (
+          <Bullseye className="loader-container">
+            <Spinner />
+          </Bullseye>
+        )}
+        {pageVideos.length === 0 && !loading ? (
           <div>
             <div className="no-video-msg">
               No videos found for the selected filters.
@@ -128,7 +133,9 @@ const VideoGallery = (props) => {
                       <p className="uploaded-by">
                         {video.createdBy?.name || "No owner"}
                       </p>
-                      {window.OpAuthHelper && video.createdBy?.name === window.OpAuthHelper?.getUserInfo().fullName ? (
+                      {window.OpAuthHelper &&
+                      video.createdBy?.name ===
+                        window.OpAuthHelper?.getUserInfo().fullName ? (
                         <NavLink
                           className="edit-video-link"
                           to={{
@@ -136,16 +143,16 @@ const VideoGallery = (props) => {
                             key: video._id,
                             state: { video: video },
                           }}
-                          title="Edit Video"
                         >
                           <ion-icon name="create-outline"></ion-icon>
                         </NavLink>
                       ) : (
-                        <span
-                          className="disable-edit-link"
-                          title="You are not authorized to edit this video information."
-                        >
-                          <ion-icon name="create-outline"></ion-icon>
+                        <span className="disable-edit-link">
+                          <ion-icon
+                            name="create-outline"
+                            data-tip
+                            data-for="edit-tip"
+                          ></ion-icon>
                         </span>
                       )}
                       <div className="footer">
@@ -163,15 +170,13 @@ const VideoGallery = (props) => {
                           state: { video: video },
                         }}
                       >
-                        <ion-icon
-                          name="play-circle-outline"
-                          title="Watch Video"
-                        ></ion-icon>
+                        <ion-icon name="play-circle-outline"></ion-icon>
                       </NavLink>
                       <div className="info">
                         <ion-icon
                           name={Helpers.getSourceIcon(video.source)}
-                          title={`Video Source: ${video.source?.toUpperCase()}`}
+                          data-tip
+                          data-for="source-tip"
                         ></ion-icon>
                         <span className="length">
                           {video.length
@@ -182,6 +187,13 @@ const VideoGallery = (props) => {
                         </span>
                       </div>
                     </aside>
+                    <ReactTooltip
+                      id="source-tip"
+                      place="bottom"
+                    >{`Video Source: ${video.source?.toUpperCase()}`}</ReactTooltip>
+                    <ReactTooltip id="edit-tip" place="bottom">
+                      You are not authorized to edit this video information.
+                    </ReactTooltip>
                   </CardBody>
                 </Card>
               </React.Fragment>
