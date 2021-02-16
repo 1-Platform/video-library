@@ -49,6 +49,14 @@ export const updateVideo = /* GraphQL */ `
   }
 `;
 
+export const getVideosBy = /* GraphQL */ `
+  query getVideosBy($video: VideoInput!) {
+    getVideosBy(input: $video) {
+      ${videoType}
+    }
+  }
+`;
+
 export const listVideos = /* GraphQL */ `
   query ListVideos {
     listVideos {
