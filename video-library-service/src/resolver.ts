@@ -83,7 +83,7 @@ Video Description:
 \t${video.description || `A demo was recently created for ${video.title} by ${userDetails?.name}.`}
 
 Video Length: ${VideoLibraryHelper.humanizeTime(video.length, { fallbackString: video.approxLength })}
-To watch this video on One Portal, follow this link: ${process.env.CLIENT}/video-library?videoID=${video.fileID || video._id}
+To watch this video on One Portal, follow this link: ${process.env.CLIENT}/video-library/watch/${video.fileID || video._id}
 
 Sent from One Portal: ${process.env.CLIENT}`,
             })

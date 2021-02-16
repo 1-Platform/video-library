@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "@patternfly/react-core";
-import { useHistory, useLocation, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import WatchVideo from "./WatchVideo";
 import VideoAPIs from "../services/VideoAPIs";
 import { Spinner, Bullseye } from "@patternfly/react-core";
