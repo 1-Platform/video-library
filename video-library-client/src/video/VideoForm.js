@@ -240,7 +240,10 @@ const VideoForm = (props) => {
                   onClick={testVideoURL}
                 >
                   Test <ion-icon name="open-outline"></ion-icon>
-                  <span class="pf-c-form__label-required" aria-hidden="true">
+                  <span
+                    className="pf-c-form__label-required"
+                    aria-hidden="true"
+                  >
                     {" "}
                     *
                   </span>
