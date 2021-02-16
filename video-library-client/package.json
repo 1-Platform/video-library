@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "/video-library/",
   "dependencies": {
+    "@one-platform/opc-footer": "0.0.3-prerelease",
+    "@one-platform/opc-header": "0.0.2-prerelease",
     "@patternfly/react-core": "4.90.2",
     "@testing-library/jest-dom": "5.11.9",
     "@testing-library/react": "11.2.5",
@@ -15,6 +17,7 @@
     "react-dom": "16.14.0",
     "react-router-dom": "5.2.0",
     "react-scripts": "3.4.4",
+    "react-tooltip": "^4.2.13",
     "use-global-hook": "0.2.1"
   },
   "scripts": {
@@ -38,10 +41,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "eslint": "7.20.0",
-    "eslint-plugin-react": "7.22.0"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [

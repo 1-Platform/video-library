@@ -38,8 +38,8 @@ const VideoForm = (props) => {
   const [globalState, globalActions] = useGlobal();
 
   useEffect(() => {
-    setCanAdd(title && description && mailingLists && approxLength);
-  }, [title, description, mailingLists, approxLength]);
+    setCanAdd(title && description && videoURL && approxLength);
+  }, [title, description, videoURL, approxLength]);
 
   const handleDescUpdate = (value) => {
     setDescription(value);
@@ -240,8 +240,13 @@ const VideoForm = (props) => {
                   onClick={testVideoURL}
                 >
                   Test <ion-icon name="open-outline"></ion-icon>
+                  <span class="pf-c-form__label-required" aria-hidden="true">
+                    {" "}
+                    *
+                  </span>
                 </Button>
                 <TextInput
+                  isRequired
                   name="videoURL"
                   type="url"
                   value={videoURL}
@@ -253,6 +258,7 @@ const VideoForm = (props) => {
               {showLength && (
                 <div className="duration-radio-group">
                   <Radio
+                    id="one-minutes"
                     isChecked={approxLength === "< 1 min"}
                     name="approxLength"
                     onChange={handleLengthChange}
@@ -260,6 +266,7 @@ const VideoForm = (props) => {
                     value="< 1 min"
                   />
                   <Radio
+                    id="three-minutes"
                     isChecked={approxLength === "< 3 min"}
                     name="approxLength"
                     onChange={handleLengthChange}
@@ -267,6 +274,7 @@ const VideoForm = (props) => {
                     value="< 3 min"
                   />
                   <Radio
+                    id="five-minutes"
                     isChecked={approxLength === "< 5 min"}
                     name="approxLength"
                     onChange={handleLengthChange}
@@ -274,6 +282,7 @@ const VideoForm = (props) => {
                     value="< 5 min"
                   />
                   <Radio
+                    id="more-than-five-minutes"
                     isChecked={approxLength === "> 5 min"}
                     name="approxLength"
                     onChange={handleLengthChange}
