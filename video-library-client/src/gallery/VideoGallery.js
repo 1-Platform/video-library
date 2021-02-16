@@ -123,7 +123,6 @@ const VideoGallery = (props) => {
                           to={{
                             pathname: `/watch/${video._id}`,
                             key: video._id,
-                            state: { video: video },
                           }}
                           title="Watch Video"
                         >
@@ -167,7 +166,6 @@ const VideoGallery = (props) => {
                         to={{
                           pathname: `/watch/${video._id}`,
                           key: video._id,
-                          state: { video: video },
                         }}
                       >
                         <ion-icon name="play-circle-outline"></ion-icon>

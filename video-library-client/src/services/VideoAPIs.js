@@ -4,6 +4,7 @@ import {
   listVideos,
   incrementVideoViewCount,
   updateVideo,
+  getVideosBy,
 } from "./GqlQueries";
 
 export default {
@@ -44,5 +45,15 @@ export default {
       query: updateVideo,
       variables: { video },
     }).then((data) => data.updateVideo);
+  },
+  /**
+   * Get the video by video details
+   * @param {object} video
+   */
+  getVideosBy: (video) => {
+    return Helpers.fetchClient({
+      query: getVideosBy,
+      variables: { video },
+    }).then((data) => data.getVideosBy);
   },
 };

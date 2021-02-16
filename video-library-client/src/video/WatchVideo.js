@@ -97,7 +97,7 @@ const WatchVideo = (props) => {
         </div>
         <h5>Additional Tags:</h5>
         <div className="tags-container">
-          {props.video.tags.map((tag, index) => (
+          {props.video?.tags?.map((tag, index) => (
             <Label key={index} variant="outline" color="green">
               {tag}
             </Label>
