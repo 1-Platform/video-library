@@ -60,7 +60,7 @@ pre {
   --pf-c-page__main-section--PaddingLeft: 0.75rem;
   --pf-c-page__main-section--PaddingRight: 0.75rem;
 }
-.loader-container{
+.loader-container {
   min-height: 50vh;
 }
 /* App specific CSS */
@@ -78,7 +78,7 @@ pre {
   display: none !important;
 }
 .add-video-btn {
-  margin-left: auto;
+  margin-left: auto !important;
 }
 .no-video-msg {
   margin-bottom: 1rem;
