@@ -6,9 +6,9 @@
   "dependencies": {
     "@one-platform/opc-footer": "0.0.3-prerelease",
     "@one-platform/opc-header": "0.0.2-prerelease",
-    "@patternfly/react-core": "4.101.3",
+    "@patternfly/react-core": "4.106.2",
     "@testing-library/jest-dom": "5.11.10",
-    "@testing-library/react": "11.2.5",
+    "@testing-library/react": "11.2.6",
     "@testing-library/user-event": "12.8.3",
     "husky": "4.3.8",
     "lint-staged": "10.5.4",
@@ -18,7 +18,7 @@
     "react-router-dom": "5.2.0",
     "react-scripts": "3.4.4",
     "react-tooltip": "4.2.17",
-    "use-global-hook": "0.2.1"
+    "use-global-hook": "0.2.2"
   },
   "scripts": {
     "start": "react-scripts start",
