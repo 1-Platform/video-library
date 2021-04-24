@@ -6,8 +6,8 @@
   "dependencies": {
     "@one-platform/opc-footer": "0.0.3-prerelease",
     "@one-platform/opc-header": "0.0.2-prerelease",
-    "@patternfly/react-core": "4.106.2",
-    "@testing-library/jest-dom": "5.11.10",
+    "@patternfly/react-core": "4.115.2",
+    "@testing-library/jest-dom": "5.12.0",
     "@testing-library/react": "11.2.6",
     "@testing-library/user-event": "12.8.3",
     "husky": "4.3.8",
