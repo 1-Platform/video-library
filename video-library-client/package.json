@@ -6,7 +6,7 @@
   "dependencies": {
     "@one-platform/opc-footer": "0.0.3-prerelease",
     "@one-platform/opc-header": "0.0.2-prerelease",
-    "@patternfly/react-core": "4.115.2",
+    "@patternfly/react-core": "4.121.1",
     "@testing-library/jest-dom": "5.12.0",
     "@testing-library/react": "11.2.7",
     "@testing-library/user-event": "13.1.9",
@@ -18,7 +18,7 @@
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.3",
     "react-tooltip": "4.2.19",
-    "use-global-hook": "0.2.2"
+    "use-global-hook": "0.2.3"
   },
   "scripts": {
     "start": "react-scripts start",
