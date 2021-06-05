@@ -7,7 +7,7 @@
     "@one-platform/opc-footer": "0.0.3-prerelease",
     "@one-platform/opc-header": "0.0.2-prerelease",
     "@patternfly/react-core": "4.121.1",
-    "@testing-library/jest-dom": "5.12.0",
+    "@testing-library/jest-dom": "5.13.0",
     "@testing-library/react": "11.2.7",
     "@testing-library/user-event": "13.1.9",
     "husky": "4.3.8",
