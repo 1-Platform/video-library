@@ -41,9 +41,9 @@ type VideoType {
   categories: [String]
   mailingLists: [String]
   tags: [String]
-  createdBy: UserType
+  createdBy: VideoUserType
   createdOn: DateTime
-  updatedBy: UserType
+  updatedBy: VideoUserType
   updatedOn: DateTime
 }
 
@@ -67,7 +67,7 @@ input VideoInput {
   skipEmail: Boolean
 }
 
-type UserType {
+type VideoUserType {
   _id: String
   name: String
   title: String
