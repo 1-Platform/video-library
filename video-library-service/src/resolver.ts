@@ -64,7 +64,7 @@ export const VideoLibraryResolver = {
             }
           }`;
           const userDetails = await VideoLibraryHelper.fetchUserDetails(query)
-          .then( res => res.data?.getUsersBy ? res.data.getUsersBy[0] : null );
+          .then( (res: any) => res.data?.getUsersBy ? res.data.getUsersBy[0] : null );
           if (input.skipEmail !== true) {
             const cc = video.mailingLists.filter((email: any) => !!email && email !== process.env.EMAIL);
             transporter.sendMail({

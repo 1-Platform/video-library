@@ -94,7 +94,7 @@ class VideoLibraryHelpers {
         agent: agent,
       };
       return fetch(`${process.env.API_GATEWAY_URL}`, options)
-      .then( res => res.json() )
+      .then( (res: any) => res.json() )
     }
     getMultipleUserDetails(videos: Video[]){
       let userIDs = videos.reduce((acc: any, video:any) => {
