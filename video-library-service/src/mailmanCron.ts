@@ -91,8 +91,8 @@ export class MailmanCron {
                       };
               
                       fetch(`${process.env.API_GATEWAY_URL}`, options)
-                      .then( res => res.json() )
-                      .then( (res) => {
+                      .then( (res: any) => res.json() )
+                      .then( (res: any) => {
                         const videoData = new VideoLibrary({
                           "title": mail.subject,
                           "description": mail.text,

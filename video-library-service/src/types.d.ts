@@ -1,5 +1,7 @@
 declare module '*.graphql';
 declare module '*.json';
+declare module 'node-fetch';
+declare module 'request';
 
 // define your types here
 type Video = {
