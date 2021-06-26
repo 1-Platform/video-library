@@ -6,7 +6,7 @@
   "dependencies": {
     "@one-platform/opc-footer": "0.0.3-prerelease",
     "@one-platform/opc-header": "0.0.2-prerelease",
-    "@patternfly/react-core": "4.128.2",
+    "@patternfly/react-core": "4.135.0",
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/react": "11.2.7",
     "@testing-library/user-event": "13.1.9",
