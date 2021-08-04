@@ -3,6 +3,7 @@ import {
   Form,
   FormGroup,
   TextInput,
+  Checkbox,
   TextArea,
   Button,
   Tabs,
@@ -34,12 +35,15 @@ const VideoForm = (props) => {
   );
   const [approxLength, setApproxLength] = useState(video?.approxLength || "");
   const [tags, setTags] = useState(video?.tags.join() || "");
+  const [isVideoShared, setVideoShared] = useState(false);
   // Global state
   const [globalState, globalActions] = useGlobal();
 
   useEffect(() => {
-    setCanAdd(title && description && videoURL && approxLength);
-  }, [title, description, videoURL, approxLength]);
+    setCanAdd(
+      title && description && videoURL && approxLength && isVideoShared
+    );
+  }, [title, description, videoURL, approxLength, isVideoShared]);
 
   const handleDescUpdate = (value) => {
     setDescription(value);
@@ -365,6 +369,16 @@ const VideoForm = (props) => {
           )}
         </div>
       </div>
+      <FormGroup isRequired fieldId="isDownloadable">
+        <Checkbox
+          isRequired
+          onClick={(e) => setVideoShared(e.target.checked)}
+          label="I confirm that this video is editable by all the Red Hat users"
+          id="isDownloadable"
+          name="isDownloadable"
+          aria-label="I confirm that this video is editable by all the Red Hat users"
+        />
+      </FormGroup>
       <ActionGroup>
         <Button
           key="submit"
@@ -393,7 +407,7 @@ const VideoForm = (props) => {
           variant="tertiary"
           onClick={toggleAdvancedFields}
         >
-          Show Advanced Fields
+          {`${advanceFields ? "Hide" : "Show"} Advanced Fields`}
         </Button>
       </ActionGroup>
     </Form>

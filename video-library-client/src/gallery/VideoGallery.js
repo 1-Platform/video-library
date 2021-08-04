@@ -46,7 +46,10 @@ const VideoGallery = (props) => {
   };
 
   const extractSetPerPageVideos = (videos) => {
-    const pageVideos = videos.slice((page - 1) * perPage, page * perPage);
+    let pageVideos = videos;
+    if (videos.length > perPage) {
+      pageVideos = videos.slice((page - 1) * perPage, page * perPage);
+    }
     setPageVideos(pageVideos);
   };
 
