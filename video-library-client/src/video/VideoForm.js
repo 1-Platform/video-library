@@ -407,7 +407,7 @@ const VideoForm = (props) => {
           variant="tertiary"
           onClick={toggleAdvancedFields}
         >
-          {`${advanceFields ? "Hide" : "Show"} Advanced Fields`}
+          {advanceFields ? "Hide" : "Show"} Advanced Fields
         </Button>
       </ActionGroup>
     </Form>
