@@ -7,7 +7,7 @@ textarea,
 code,
 tt,
 pre {
-  font-family: "Red Hat Text", sans-serif;
+  font-family: "Red Hat Text", sans-serif !important;
 }
 .wrapper {
   text-align: center;
@@ -333,4 +333,7 @@ iframe.embed-responsive-item {
 .pf-c-label {
   margin-right: 5px;
   line-height: 12px;
+}
+.pf-c-form__group.pf-m-action {
+  --pf-c-form__group--m-action--MarginTop: 1rem;
 }
