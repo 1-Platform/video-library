@@ -1,4 +1,3 @@
-import React from "react";
 import globalHook from "use-global-hook";
 
 const initialState = {
@@ -28,5 +27,5 @@ const actions = {
   },
 };
 
-const useGlobal = globalHook(React, initialState, actions);
+const useGlobal = globalHook(initialState, actions);
 export default useGlobal;

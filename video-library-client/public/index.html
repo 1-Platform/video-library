@@ -16,8 +16,9 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Video Library</title>
+    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text&display=swap" rel="stylesheet">
-
   </head>
   <body>
     <!-- #region NavBar -->
@@ -25,8 +26,8 @@
     <script src="https://unpkg.com/@one-platform/opc-menu-drawer@latest/dist/opc-menu-drawer.js"></script>
     <script src="https://unpkg.com/@one-platform/opc-feedback@latest/dist/opc-feedback.js"></script>
     <script src="https://unpkg.com/@one-platform/opc-notification-drawer@latest/dist/opc-notification-drawer.js"></script>
-    <script src="https://unpkg.com/@one-platform/opc-base@latest/dist/umd/opc-base.js"></script>
-    <script src="https://unpkg.com/@one-platform/opc-base@latest/dist/umd/opc-provider.js"></script>
+    <script src="https://unpkg.com/@one-platform/opc-base@1.0.5-beta/dist/umd/opc-base.js"></script>
+    <script src="https://unpkg.com/@one-platform/opc-base@1.0.5-beta/dist/umd/opc-provider.js"></script>
     <script>
       opcBase.configure( {
         apiBasePath: "%REACT_APP_API_URL%",
