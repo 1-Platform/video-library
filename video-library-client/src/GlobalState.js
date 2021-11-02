@@ -28,5 +28,5 @@ const actions = {
   },
 };
 
-const useGlobal = globalHook(React, initialState, actions);
+const useGlobal = globalHook(initialState, actions);
 export default useGlobal;
