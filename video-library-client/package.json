@@ -7,6 +7,7 @@
     "@one-platform/opc-footer": "0.0.3-prerelease",
     "@one-platform/opc-header": "0.0.2-prerelease",
     "@patternfly/react-core": "4.135.0",
+    "@sentry/react": "^6.16.0",
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/react": "11.2.7",
     "@testing-library/user-event": "13.2.1",
@@ -51,5 +52,11 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  }
+  },
+  "contributors": [
+    {
+      "email": "akhilmhdh@gmail.com",
+      "name": "Akhil Mohan"
+    }
+  ]
 }
