@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import * as Sentry from "@sentry/react";
 
 import pkg from "../package.json";
-import App from "./App";
 import "@patternfly/react-core/dist/styles/base.css";
+import App from "./App";
 
 if (process.env.NODE_ENV === "production") {
   Sentry.init({
