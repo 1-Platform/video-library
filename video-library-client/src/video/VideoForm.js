@@ -31,10 +31,10 @@ const VideoForm = (props) => {
   const [title, setTitle] = useState(video?.title || "");
   const [description, setDescription] = useState(video?.description || "");
   const [mailingLists, setMailingLists] = useState(
-    video?.mailingLists.join() || ""
+    video?.mailingLists?.join() || ""
   );
   const [approxLength, setApproxLength] = useState(video?.approxLength || "");
-  const [tags, setTags] = useState(video?.tags.join() || "");
+  const [tags, setTags] = useState(video?.tags?.join() || "");
   const [isVideoShared, setVideoShared] = useState(false);
   // Global state
   const [globalState, globalActions] = useGlobal();
@@ -371,7 +371,6 @@ const VideoForm = (props) => {
       </div>
       <FormGroup isRequired fieldId="isDownloadable">
         <Checkbox
-          isRequired
           onClick={(e) => setVideoShared(e.target.checked)}
           label="I confirm that this video is editable by all the Red Hat users"
           id="isDownloadable"

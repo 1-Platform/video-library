@@ -30,7 +30,11 @@ const Controls = (props) => {
             aria-label="Search videos by title, description, tags, createdBy, source"
             onChange={updateSearchTerm}
           />
-          <Button variant="control" aria-label="Search button for video">
+          <Button
+            variant="control"
+            name="search"
+            aria-label="Search button for video"
+          >
             <SearchIcon />
           </Button>
         </InputGroup>
