@@ -10,10 +10,8 @@ export const videos = {
         },
         createdOn: "2019-07-17T21:06:59.000Z",
         description: "This is a test video.",
-        //fileID: "5d2f8df499410e01d3da3d62",
         length: null,
         mailingLists: [],
-        //source: "mojo",
         tags: ["tag1", "tag2"],
         title: "Test video",
         updatedBy: {
