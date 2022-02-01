@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VideoGallery renders correctly 1`] = `
+<section
+  className="pf-c-page__main-section video-page-section"
+>
+  <div
+    className="pf-c-empty-state"
+  >
+    <div
+      className="pf-c-empty-state__content"
+    >
+      <div
+        className="pf-c-empty-state__icon"
+      >
+        <span
+          aria-valuetext="Loading..."
+          className="pf-c-spinner pf-m-xl"
+          role="progressbar"
+        >
+          <span
+            className="pf-c-spinner__clipper"
+          />
+          <span
+            className="pf-c-spinner__lead-ball"
+          />
+          <span
+            className="pf-c-spinner__tail-ball"
+          />
+        </span>
+      </div>
+      <h4
+        className="pf-c-title pf-m-lg"
+      >
+        Loading
+      </h4>
+    </div>
+  </div>
+  <div
+    className="pf-l-gallery pf-m-gutter video-gallery"
+  />
+</section>
+`;

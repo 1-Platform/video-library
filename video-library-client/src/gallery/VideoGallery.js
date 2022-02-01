@@ -6,7 +6,9 @@ import {
   Gallery,
   PageSection,
   Spinner,
-  Bullseye,
+  EmptyState,
+  EmptyStateIcon,
+  Title,
 } from "@patternfly/react-core";
 import useGlobal from "../GlobalState";
 import { PlusCircleIcon } from "@patternfly/react-icons";
@@ -96,9 +98,12 @@ const VideoGallery = (props) => {
     <React.Fragment>
       <PageSection className="video-page-section">
         {loading && (
-          <Bullseye className="loader-container">
-            <Spinner />
-          </Bullseye>
+          <EmptyState>
+            <EmptyStateIcon variant="container" component={Spinner} />
+            <Title size="lg" headingLevel="h4">
+              Loading
+            </Title>
+          </EmptyState>
         )}
         {pageVideos.length === 0 && !loading ? (
           <div>
