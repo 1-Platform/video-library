@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:12-alpine
 LABEL Name=one-platform-video-library-service \
   Version=0.0.1 \
   maintainer="mdeshmuk@redhat.com"
