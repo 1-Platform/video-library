@@ -8,6 +8,7 @@ import "@patternfly/patternfly/patternfly.css";
 import "@one-platform/opc-header/dist/opc-header";
 import "@one-platform/opc-footer/dist/opc-footer";
 import "./VideoLibrary.css";
+import { Banner, Flex, FlexItem } from "@patternfly/react-core";
 
 const App = () => {
   const breadcrumbs = createRef();
@@ -25,6 +26,24 @@ const App = () => {
   }, []);
   return (
     <React.StrictMode>
+      <Banner screenReaderText="Danger banner" variant="danger">
+        <Flex spaceItems={{ default: "spaceItemsSm" }}>
+          <FlexItem>
+            <ion-icon name="alert-outline"></ion-icon>
+          </FlexItem>
+          <FlexItem>
+            <a
+              style={{
+                color: "#fff",
+              }}
+              href="mailto:one-platform-devs@redhat.com"
+            >
+              The video library is about to be decommissioned on 31 Dec'22.
+              Please let us know if you have any questions or concerns.
+            </a>
+          </FlexItem>
+        </Flex>
+      </Banner>
       <opc-header heading="Video Library" theme="blue">
         <opc-header-breadcrumb
           ref={breadcrumbs}
