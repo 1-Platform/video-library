@@ -3,7 +3,7 @@
  * @param {{query: string, variables: object}} body
  */
 const fetchClient = (body) => {
-  return fetch(`${process.env.REACT_APP_API_UR_NON_NATIVE}`, {
+  return fetch(`${process.env.REACT_APP_API_URL_NON_NATIVE}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
