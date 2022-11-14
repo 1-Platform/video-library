@@ -1,6 +1,6 @@
 {
   "name": "video-library-spa",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": true,
   "homepage": "/video-library/",
   "dependencies": {
@@ -22,7 +22,7 @@
     "use-global-hook": "0.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=4200 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -57,6 +57,11 @@
     {
       "email": "akhilmhdh@gmail.com",
       "name": "Akhil Mohan"
+    },
+    {
+      "email": "denair@redhat.com",
+      "name": "Deepesh Nair",
+      "url": "https://hybridx.github.io"
     }
   ],
   "devDependencies": {
