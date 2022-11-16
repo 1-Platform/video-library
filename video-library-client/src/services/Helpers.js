@@ -3,11 +3,11 @@
  * @param {{query: string, variables: object}} body
  */
 const fetchClient = (body) => {
-  return fetch(`${process.env.REACT_APP_API_URL}`, {
+  return fetch(`${process.env.REACT_APP_API_URL_NON_NATIVE}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${window.OpAuthHelper?.jwtToken}`
+      Authorization: `Bearer ${window.OpAuthHelper?.jwtToken}`,
     },
     body: JSON.stringify(body),
   })
