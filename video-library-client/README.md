@@ -9,6 +9,8 @@ The Video library SPA offers functionalities like listing existing videos, addin
 
 ## Setup
 
+`Preferred Node.js version is 16.x.x`
+
 To setup the config, you'll need to edit the `.env.example` file.
 
 It just needs the api urls configured.
