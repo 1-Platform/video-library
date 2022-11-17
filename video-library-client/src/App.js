@@ -36,9 +36,10 @@ const App = () => {
               style={{
                 color: "#fff",
               }}
-              href="mailto:one-platform-devs@redhat.com"
+              href="https://videos.learning.redhat.com/"
             >
-              The video library is about to be decommissioned on 31 Dec'22.
+              In response to Media Space (http://videos.learning.redhat.com/)
+              the video library is about to be decommissioned on 31 Dec'22.
               Please let us know if you have any questions or concerns.
             </a>
           </FlexItem>
