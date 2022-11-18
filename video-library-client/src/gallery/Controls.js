@@ -54,6 +54,7 @@ const Controls = (props) => {
         </ToolbarItem>
         <ToolbarItem className="add-video-btn">
           <Button
+            isDisabled
             variant="primary"
             icon={<PlusCircleIcon />}
             onClick={props.openAddModal}

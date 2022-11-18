@@ -36,10 +36,12 @@ const App = () => {
               style={{
                 color: "#fff",
               }}
-              href="mailto:one-platform-devs@redhat.com"
+              href={process.env.REACT_APP_BANNER_URL}
             >
-              The video library is about to be decommissioned on 31 Dec'22.
-              Please let us know if you have any questions or concerns.
+              In response to Media Space ({process.env.REACT_APP_BANNER_URL})
+              the video library is about to be decommissioned on 31st Dec 2022.
+              We are disabling the feature to add videos on the video library.
+              Please let us know if you have any queries or issues.
             </a>
           </FlexItem>
         </Flex>
