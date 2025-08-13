@@ -38,7 +38,7 @@
   "dependencies": {
     "apollo-log": "0.2.0",
     "apollo-server-express": "2.25.2",
-    "body-parser": "1.19.0",
+    "body-parser": "1.20.3",
     "clean-webpack-plugin": "3.0.0",
     "cookie-parser": "1.4.5",
     "cors": "2.8.5",
