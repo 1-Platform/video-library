@@ -70,7 +70,7 @@
     "@types/jest": "26.0.24",
     "@types/lodash": "4.14.171",
     "@types/mailparser": "2.7.4",
-    "@types/method-override": "0.0.32",
+    "@types/method-override": "3.0.0",
     "@types/mocha": "8.2.3",
     "@types/mongoose": "5.11.96",
     "@types/morgan": "1.9.3",
